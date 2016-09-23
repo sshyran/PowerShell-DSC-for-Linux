@@ -6,7 +6,6 @@ import os
 import sys
 import imp
 import ctypes
-
 try:
     import unittest2
 except:
