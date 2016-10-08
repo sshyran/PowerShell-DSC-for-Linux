@@ -28,7 +28,7 @@ def init_vars(Instances):
                 instance['ClassName']=instance['ClassName'].value
 
             new_properties = []
-            if instance['Properties'] is not None and len(customlog['Properties'].value) > 0:
+            if instance['Properties'] is not None and len(instance['Properties'].value) > 0:
                 for property in instance['Properties'].value:
                     if property is not None and len(property) > 0:
                         new_properties.append(property)
@@ -41,19 +41,19 @@ def init_vars(Instances):
     
 def Set_Marshall(FilePath, Ensure = False, Instances = None):
     init_vars(Instances)
-    Set(Ensure, Instances)
+    Set(FilePath, Ensure, Instances)
     return [0]
 
 def Test_Marshall(FilePath, Ensure = False, Instances = None):
     init_vars(Instances)
     return Test(Ensure, Instances)
 
-def Get_Marshall(Properties, Ensure = False, Instances = None):
+def Get_Marshall(FilePath, Ensure = False, Instances = None):
     arg_names = list(locals().keys())
     init_vars(Instances)
     
     CurrentInstances = Instances
-    Name = protocol.MI_String(Name)
+    FilePath = protocol.MI_String(FilePath)
     Ensure = protocol.MI_Boolean(Ensure)
     for instance in CurrentInstances:
         instance['InstanceName'] = protocol.MI_String(instance['InstanceName'])
@@ -67,34 +67,37 @@ def Get_Marshall(Properties, Ensure = False, Instances = None):
         retd[k] = ld[k]
     return 0, retd
             
-def Set(Ensure, Instances):
-    GenerateInventoyMOF(Instances)
+def Set(FilePath, Ensure, Instances):
+    if Ensure == True:
+         GenerateInventoyMOF(FilePath, Instances)
     return [0]
 
 def Test(Ensure, Instances):
     return [-1]
 
-def GenerateInventoyMOF(Instances):
-    header = ''
-    footer= "\ninstance of OMI_ConfigurationDocument
-	     {
-                 DocumentType = "inventory";
-                 Version="2.0.0";
-                 MinimumCompatibleVersion = "2.0.0";
-                 Name="InventoryConfig";
-             };"
+def GenerateInventoyMOF(FilePath, Instances):
+    header = '/*@TargetNode=\'Localhost\'*/\n'
+    footer= '\ninstance of OMI_ConfigurationDocument \n{\n \
+    DocumentType = \"inventory\"; \n \
+    Version=\"2.0.0\"; \n \
+    MinimumCompatibleVersion = \"2.0.0\"; \n \
+    Name=\"InventoryConfig\"; \n};'
 
     inventoryMofSection = ''
     if Instances is not None:
         for instance in Instances:
             instanceName = instance['InstanceName']
             className = instance['ClassName']
-            filepaths = ';\n'.join(instance['Properties'])
+            filepaths = '    '+';\n    '.join(instance['Properties'])
             new_source = 'instance of ' + className + '\n{\n'
             new_source+= filepaths + '\n};\n'
             inventoryMofSection+=new_source
-    txt = header + inventoryMofSection + footer
-    if os.path.isfile(inventoryMof_path): 
-        shutil.copy2(inventoryMof_path, inventoryMof_path + '.bak')
-    codecs.open(inventoryMof_path, 'w', 'utf8').write(txt)
-    os.system('sudo /opt/microsoft/omsagent/bin/service_control restart')
+
+    if os.path.isfile(FilePath): 
+        shutil.copy2(FilePath, FilePath + '.bak')
+    txt = header + inventoryMofSection + footer 
+    codecs.open(FilePath, 'w', 'utf8').write(txt)
+    print(FilePath)
+    print(txt)
+    return txt
+#    os.system('sudo /opt/microsoft/omsagent/bin/service_control restart')

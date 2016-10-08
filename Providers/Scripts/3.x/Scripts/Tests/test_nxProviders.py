@@ -180,6 +180,7 @@ nxOMSAgent=imp.load_source('nxOMSAgent','./Scripts/nxOMSAgent.py')
 nxOMSCustomLog=imp.load_source('nxOMSCustomLog','./Scripts/nxOMSCustomLog.py')
 nxOMSKeyMgmt=imp.load_source('nxOMSKeyMgmt','./Scripts/nxOMSKeyMgmt.py')
 nxFileInventory=imp.load_source('nxFileInventory', './Scripts/nxFileInventory.py')
+nxOMSInventoryMOF=imp.load_source('nxOMSInventoryMOF', './Scripts/nxOMSInventoryMOF.py')
 
 
 class nxUserTestCases(unittest2.TestCase):
@@ -3569,6 +3570,68 @@ class nxOMSCustomLogTestCases(unittest2.TestCase):
         'Get('+repr(g)+' should return ==['+repr(m)+']')
     
 
+class nxOMSInventoryMOFTestCases(unittest2.TestCase):
+    """
+    Test Case for nxOMSInventoryMOF.py
+    """
+
+    original_mof_path = None
+    mock_mof_path = '/tmp/ut_generatedinventory.mof'
+
+    def setUp(self):
+        """
+        Setup test resources
+        """
+        self.original_mof_path = nxOMSInventoryMOF.inventoryMof_path
+        nxOMSInventoryMOF.inventoryMof_path = self.mock_mof_path
+        os.system('rm -rf {0}'.format(self.mock_mof_path))
+
+    def tearDown(self):
+        """
+        Remove test resources
+        """
+        nxOMSInventoryMOF.inventoryMof_path = self.original_mof_path
+
+    def make_MI(self, retval, FilePath, Ensure, Instances):
+        d = dict()
+        d['FilePath'] = nxOMSInventoryMOF.protocol.MI_String(FilePath)
+        d['Ensure'] = nxOMSInventoryMOF.protocol.MI_Boolean(Ensure)
+        if Instances is None:
+            Instances = []
+        for instance in Instances:
+            instance['InstanceName'] = nxOMSInventoryMOF.protocol.MI_String(instance['InstanceName'])
+            instance['ClassName'] = nxOMSInventoryMOF.protocol.MI_String(instance['ClassName'])
+
+            if instance['Properties'] is not None and len(instance['Properties']):
+                instance['Properties'] = nxOMSInventoryMOF.protocol.MI_StringA(instance['Properties'])
+        d['Instances'] = nxOMSInventoryMOF.protocol.MI_InstanceA(Instances)
+        return retval, d
+
+    def testSetOMSInventoryMOF_multipleinstances(self):
+        d = { 'FilePath': '/tmp/test2.log', 'Ensure': True, 'Instances': [{ 'InstanceName': 'FileInventory', 'ClassName': 'MSFT_nxFileInventoryResource', 'Properties': [ 'DestinationPath = "/etc/*.conf";', 'Recurse=true;' ] }, { 'InstanceName': 'RegistryInventory', 'ClassName':'MSFT_nxRegistryInventoryResource', 'Properties': [ 'RegistryName=hkeylocal' ] } ] }
+
+        for instance in d['Instances']:
+            instance['InstanceName'] = nxOMSInventoryMOF.protocol.MI_String(instance['InstanceName'])
+            instance['ClassName'] = nxOMSInventoryMOF.protocol.MI_String(instance['ClassName'])
+            instance['Properties'] = nxOMSInventoryMOF.protocol.MI_StringA(instance['Properties'])
+
+        self.assertTrue(nxOMSInventoryMOF.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
+
+    def testSetOMSInventoryMOF_noinstances(self):
+        d = { 'FilePath': '/tmp/test2.log', 'Ensure': True, 'Instances': None }
+        self.assertTrue(nxOMSInventoryMOF.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
+
+    def testSetOMSInventoryMOF_EnsureisFalse(self):
+        d = { 'FilePath': '/tmp/test2.log', 'Ensure': False, 'Instances': [{ 'InstanceName': 'FileInventory', 'ClassName': 'MSFT_nxFileInventoryResource', 'Properties': [ 'DestinationPath = "/etc/*.conf";', 'Recurse=true;' ] }, { 'InstanceName': 'RegistryInventory', 'ClassName':'MSFT_nxRegistryInventoryResource', 'Properties': [ 'RegistryName=hkeylocal' ] } ] }
+
+        for instance in d['Instances']:
+            instance['InstanceName'] = nxOMSInventoryMOF.protocol.MI_String(instance['InstanceName'])
+            instance['ClassName'] = nxOMSInventoryMOF.protocol.MI_String(instance['ClassName'])
+            instance['Properties'] = nxOMSInventoryMOF.protocol.MI_StringA(instance['Properties'])
+
+        self.assertTrue(nxOMSInventoryMOF.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
+
+
 # omsagent is not required to  be running.
 class nxOMSKeyMgmtTestCases(unittest2.TestCase):
     """
@@ -4411,5 +4474,6 @@ if __name__ == '__main__':
     s20=unittest2.TestLoader().loadTestsFromTestCase(nxOMSCustomLogTestCases)
     s21=unittest2.TestLoader().loadTestsFromTestCase(nxOMSKeyMgmtTestCases)
     s22=unittest2.TestLoader().loadTestsFromTestCase(nxFileInventoryTestCases)
-    alltests = unittest2.TestSuite([s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20])
-    unittest2.TextTestRunner(stream=sys.stdout,verbosity=3).run(alltests)
+    s23=unittest2.TestLoader().loadTestsFromTestCase(nxOMSInventoryMOFTestCases) 
+    alltests = unittest2.TestSuite([s23])
+    unittest2.TextTestRunner(stream=sys.stdout,verbosity=1).run(alltests)
