@@ -1819,7 +1819,7 @@ class nxServiceTestCases(unittest2.TestCase):
         """
         Setup test resources
         """
-        self.controller = None
+        self.controller = nxService.GetController()
         nxService.SetShowMof(True)
         print self.id() + '\n'
         dist=platform.dist()[0].lower()
@@ -3499,7 +3499,7 @@ class nxOMSCustomLogTestCases(unittest2.TestCase):
 # omsagent is not required to  be running.
 class nxOMSKeyMgmtTestCases(unittest2.TestCase):
     """
-    Test cases for nxOMSSyslog.py
+    Test cases for nxOMSKeyMgmt.py
     """
     @classmethod    
     def setUpClass(cls):

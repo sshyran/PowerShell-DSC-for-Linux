@@ -326,6 +326,12 @@ class nxPackageTestCases(unittest2.TestCase):
     """
     Test cases for nxPackage
     """
+    def setUp(self):
+        """
+        Setup test resources
+        """
+        self.pkg = 'dummy'
+
     def CheckInventory(self, Name, Inventory):
         if len(Inventory['__Inventory'].value) < 1:
             return False
@@ -401,7 +407,6 @@ class nxPackageTestCases(unittest2.TestCase):
     def testInventoryMarshall(self):
         r=nxPackage.Inventory_Marshall('','','*','',False,'',0)
         self.assertTrue(r[0] == 0,"Inventory_Marshall('','','*','',False,'',0)  should return == [0]")
-        print repr(r[1])
 
     def testInventoryMarshallFilterName(self):
         r=nxPackage.Inventory_Marshall('', '', self.pkg, '', False, '', 0)
@@ -425,7 +430,7 @@ class nxPackageTestCases(unittest2.TestCase):
         r=nxPackageBroken.Inventory_Marshall('','','*','',False,'',0)
         os.system('rm /tmp/nxPackageBroken.py')
         self.assertTrue(len(r[1]['__Inventory'].value) == 0,"nxPackageBroken.Inventory_Marshall('','','*','',False,'',0)  should return empty MI_INSTANCEA.")
-        print repr(r[1])
+
 
 @unittest2.skipUnless(nxService.Inventory_Marshall('*', '*', None,'')[0] == \
                       0,'Error.  Skipping nxService.Inventory_Marshall tests.')
@@ -433,10 +438,11 @@ class nxServiceTestCases(unittest2.TestCase):
     """
     Test cases for nxService
     """
+    @classmethod    
     def setUpClass(cls):
         cls.srv_names = {}
         r=nxService.Inventory_Marshall('*', '*', None,'')
-        for srv in r[1].value:
+        for srv in r[1]['__Inventory'].value:
             if srv['State'].value == 'running' :
                 cls.srv_names['running'] = srv['Name'].value
             if srv['State'].value == 'stopped' :
@@ -451,6 +457,7 @@ class nxServiceTestCases(unittest2.TestCase):
             for k in ['running', 'stopped', 'enabled', 'disabled']:
                 if k not in cls.srv_names.keys():
                     cls.srv_names[k] = '*'
+        cls.controller = nxService.GetController()
 
     def CheckInventory(self, Name, Controller, Enabled, State, Inventory):
         if len(Inventory['__Inventory'].value) < 1:
@@ -501,7 +508,7 @@ class nxServiceTestCases(unittest2.TestCase):
         return retval,d
 
     def testInventoryMarshall(self):
-        r=nxService.Inventory_Marshall('*', self.controller, None,'')
+        r=nxService.Inventory_Marshall('*', '*', None,'')
         self.assertTrue(r[0] == 0,"Inventory_Marshall('*', " + self.controller + ", None,'')  should return == 0")
         print repr(r[1])
 
@@ -531,7 +538,7 @@ class nxServiceTestCases(unittest2.TestCase):
 
     def testInventoryMarshallDummyServiceFilterName(self):
         name = self.srv_names['running']
-        name = name[-1] + '*'
+        name = name[:-1] + '*'
         r=nxService.Inventory_Marshall(name, self.controller, None,'')
         self.assertTrue(r[0] == 0,"Inventory_Marshall(name, " + self.controller + ", None,'')  should return == 0")
         self.assertTrue(self.CheckInventory(name, self.controller, None, '', r[1]) == True, \
@@ -540,7 +547,7 @@ class nxServiceTestCases(unittest2.TestCase):
     @unittest2.skipIf(nxService.UpstartExists() == True,'Not implemented in upstart')
     def testInventoryMarshallDummyServiceFilterEnabled(self):
         name = self.srv_names['enabled']
-        name = name[-1] + '*'
+        name = name[:-1] + '*'
         r=nxService.Inventory_Marshall(name, self.controller, True,'')
         self.assertTrue(r[0] == 0,"Inventory_Marshall(name, " + self.controller + ", True,'')  should return == 0")
         self.assertTrue(self.CheckInventory(name, self.controller, True, '', r[1]) == True, \
@@ -548,7 +555,7 @@ class nxServiceTestCases(unittest2.TestCase):
 
     def testInventoryMarshallDummyServiceFilterState(self):
         name = self.srv_names['running']
-        name = name[-1] + '*'
+        name = name[:-1] + '*'
         r=nxService.Inventory_Marshall(name, self.controller, None,'running')
         self.assertTrue(r[0] == 0,"Inventory_Marshall(name, " + self.controller + ", None,'running')  should return == 0")
         self.assertTrue(self.CheckInventory(name, self.controller, None, 'running', r[1]) == True, \
@@ -564,7 +571,7 @@ class nxServiceTestCases(unittest2.TestCase):
 
     def testInventoryMarshallDummyServiceFilterEnabledError(self):
         name = self.srv_names['enabled']
-        name = name[-1] + '*'
+        name = name[:-1] + '*'
         r=nxService.Inventory_Marshall(name, self.controller, False,'')
         self.assertTrue(r[0] == 0,"Inventory_Marshall(name, " + self.controller + ", False,'')  should return == 0")
         self.assertTrue(self.CheckInventory(name, self.controller, False, '', r[1]) == False, \
@@ -572,7 +579,7 @@ class nxServiceTestCases(unittest2.TestCase):
 
     def testInventoryMarshallDummyServiceFilterStateError(self):
         name = self.srv_names['stopped']
-        name = name[-1] + '*'
+        name = name[:-1] + '*'
         r=nxService.Inventory_Marshall(name, self.controller, None,'stopped')
         self.assertTrue(r[0] == 0,"Inventory_Marshall(name, " + self.controller + ", None,'stopped')  should return == 0")
         self.assertTrue(self.CheckInventory(name, self.controller, None, 'stopped', r[1]) == False, \
@@ -586,9 +593,10 @@ class nxServiceTestCases(unittest2.TestCase):
  
 OMSSyslog_setup_txt = """
 import os,sys
-if os.path.exists('/etc/rsyslog.d/95-omsagent.conf'):
-    os.system('cp /etc/rsyslog.d/95-omsagent.conf /etc/rsyslog.d/95-omsagent.conf.bak')
-    os.system('cp /etc/opt/omi/conf/omsconfig/rsyslog-oms.conf /etc/opt/omi/conf/omsconfig/rsyslog-oms.conf.bak')
+if os.path.exists('/etc/rsyslog.d/'):
+    if os.path.exists('/etc/rsyslog.d/95-omsagent.conf'):
+        os.system('cp /etc/rsyslog.d/95-omsagent.conf /etc/rsyslog.d/95-omsagent.conf.bak')
+        os.system('cp /etc/opt/omi/conf/omsconfig/rsyslog-oms.conf /etc/opt/omi/conf/omsconfig/rsyslog-oms.conf.bak')
 elif os.path.exists('/etc/rsyslog.conf'):
     os.system('cp /etc/rsyslog.conf /etc/rsyslog.conf.bak')
     os.system('cp /etc/opt/omi/conf/omsconfig/rsyslog-oms.conf /etc/opt/omi/conf/omsconfig/rsyslog-oms.conf.bak')
@@ -624,13 +632,13 @@ class nxOMSSyslogTestCases(unittest2.TestCase):
         """
         Setup test resources
         """
-        os.system('sudo python -c "' + OMSSyslog_setup_txt + '"')
+        os.system('/bin/echo -e "' + OMSSyslog_setup_txt + '" | sudo python')
         
     def tearDown(self):
         """
         Remove test resources.
         """
-        os.system('sudo python -c "' + OMSSyslog_teardown_txt + '"')
+        os.system('/bin/echo -e "' + OMSSyslog_teardown_txt + '" | sudo python')
 
     def make_MI(self,retval,SyslogSource):
         d=dict()
@@ -654,6 +662,7 @@ class nxOMSSyslogTestCases(unittest2.TestCase):
         self.assertTrue(nxOMSSyslog.Test_Marshall(**d) == [0],'Test_Marshall('+repr(d)+') should return == [0]') 
 
     def testGetOMSSyslog_add(self):
+        import pdb; pdb.set_trace()
         d={'SyslogSource': [{'Facility': 'auth','Severities': ['crit','emerg','warning']},{'Facility': 'kern','Severities': ['crit','emerg','warning']}] }
         e=copy.deepcopy(d)
         t=copy.deepcopy(d)
@@ -711,13 +720,13 @@ class nxOMSAgentTestCases(unittest2.TestCase):
         """
         Setup test resources
         """
-        os.system('sudo python -c "' + nxOMSAgent_setup_txt + '"')
+        os.system('/bin/echo -e "' + nxOMSAgent_setup_txt + '" | sudo python')
 
     def tearDown(self):
         """
         Remove test resources.
         """
-        os.system('sudo python -c "' + nxOMSAgent_teardown_txt + '"')
+        os.system('/bin/echo -e "' + nxOMSAgent_teardown_txt + '" | sudo python')
         
     def make_MI(self,retval,HeartbeatIntervalSeconds, PerfObject):
         d=dict()
@@ -803,7 +812,7 @@ class nxOMSAgentTestCases(unittest2.TestCase):
         'Get('+repr(g)+' should return ==['+repr(m)+']')
 
     def testSetOMSAgent_add_missing_conf_file(self):
-        os.system('sudo python -c \'import os; os.system("rm /etc/opt/microsoft/omsagent/conf/omsagent.conf")\'')
+        os.system('/bin/echo -e \'import os; os.system("rm /etc/opt/microsoft/omsagent/conf/omsagent.conf")\' | sudo python')
         d={'HeartbeatIntervalSeconds':600,'PerfObject':[{'InstanceName':'*', 'IntervalSeconds':600, 'AllInstances':True,
             'PerformanceCounter':['FreeMegabytes','PercentFreeSpace','PercentUsedSpace','PercentFreeInodes',
             'PercentUsedInodes','BytesPerSecond','ReadBytesPerSecond','WriteBytesPerSecond'],
@@ -819,7 +828,7 @@ class nxOMSAgentTestCases(unittest2.TestCase):
         self.assertTrue(nxOMSAgent.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]') 
 
     def testSetGetOMSAgent_add_missing_conf_file(self):
-        os.system('sudo python -c \'import os; os.system("rm /etc/opt/microsoft/omsagent/conf/omsagent.conf")\'')
+        os.system('/bin/echo -e \'import os; os.system("rm /etc/opt/microsoft/omsagent/conf/omsagent.conf")\' | sudo python')
         d={'HeartbeatIntervalSeconds':600,'PerfObject':[{'InstanceName':'*', 'IntervalSeconds':600, 'AllInstances':True,
             'PerformanceCounter':['FreeMegabytes','PercentFreeSpace','PercentUsedSpace','PercentFreeInodes',
             'PercentUsedInodes','BytesPerSecond','ReadBytesPerSecond','WriteBytesPerSecond'],
@@ -894,7 +903,7 @@ class nxOMSAgentTestCases(unittest2.TestCase):
 
 nxOMSCustomLog_setup_txt = """
 import os
-os.system("rm -rf ./ut_customlog.conf")
+os.system('rm -rf ./ut_customlog.conf')
 """
 class nxOMSCustomLogTestCases(unittest2.TestCase):
     """
@@ -910,7 +919,7 @@ class nxOMSCustomLogTestCases(unittest2.TestCase):
         """
         self.original_conf_path = nxOMSCustomLog.conf_path
         nxOMSCustomLog.conf_path = self.mock_conf_path
-        os.system('sudo python -c "' + nxOMSCustomLog_setup_txt + '"')
+        os.system('/bin/echo -e "' + nxOMSCustomLog_setup_txt + '" | sudo python')
 
     def tearDown(self):
         """
@@ -980,7 +989,7 @@ class nxOMSCustomLogTestCases(unittest2.TestCase):
         'Get('+repr(g)+' should return ==['+repr(m)+']')
     
 
-nxOMSKeyMgmt_cls_setup_txt = """ import os
+nxOMSKeyMgmt_cls_setup_txt = """import os
 key_txt = (open('./Scripts/Tests/test_mofs/testdsckey.pub','r').read())
 sig_txt = (open('./Scripts/Tests/test_mofs/testdsckey.asc','r').read())
 cls.keymgmt = {'KeyContents': key_txt, \
@@ -993,12 +1002,14 @@ os.system('cp ' + nxOMSKeyMgmt.signature_keyring_path + ' ' + \
 os.system('cp ' + nxOMSKeyMgmt.dsc_keyring_path + ' ' + \
           nxOMSKeyMgmt.dsc_keyring_path +  '.bak 2>&1 >/dev/null')
 """
-nxOMSKeyMgmt_cls_teardown_txt = """os.system('cp ' + nxOMSKeyMgmt.signature_keyring_path + '.bak ' + \
+nxOMSKeyMgmt_cls_teardown_txt = """import os
+os.system('cp ' + nxOMSKeyMgmt.signature_keyring_path + '.bak ' + \
 nxOMSKeyMgmt.signature_keyring_path + '2>&1 >/dev/null')
 os.system('cp ' + nxOMSKeyMgmt.dsc_keyring_path + '.bak ' + \
 nxOMSKeyMgmt.dsc_keyring_path +  ' 2>&1 >/dev/null')
 """
-nxOMSKeyMgmt_setup_txt = """os.system('cp ./Scripts/Tests/test_mofs/keymgmtring.gpg ' + \
+nxOMSKeyMgmt_setup_txt = """import os
+os.system('cp ./Scripts/Tests/test_mofs/keymgmtring.gpg ' + \
 nxOMSKeyMgmt.signature_keyring_path +  ' 2>&1 >/dev/null')
 os.system('cp ./Scripts/Tests/test_mofs/keyring.gpg ' + \
 nxOMSKeyMgmt.dsc_keyring_path +  ' 2>&1 >/dev/null')
@@ -1007,15 +1018,15 @@ nxOMSKeyMgmt.dsc_keyring_path +  ' 2>&1 >/dev/null')
 # omsagent is not required to  be running.
 class nxOMSKeyMgmtTestCases(unittest2.TestCase):
     """
-    Test cases for nxOMSSyslog.py
+    Test cases for nxOMSKeyMgmt.py
     """
     @classmethod    
     def setUpClass(cls):
-        os.system('sudo python -c "' + nxOMSKeyMgmt_cls_setup_txt + '"')
+        os.system('/bin/echo -e "' + nxOMSKeyMgmt_cls_setup_txt + '" | sudo python')
 
     @classmethod
     def tearDownClass(cls):
-        os.system('sudo python -c "' + nxOMSKeyMgmt_cls_teardown_txt + '"')
+        os.system('/bin/echo -e "' + nxOMSKeyMgmt_cls_teardown_txt + '" | sudo python')
         
 
     
@@ -1023,7 +1034,7 @@ class nxOMSKeyMgmtTestCases(unittest2.TestCase):
         """
         Setup test resources
         """
-        os.system('sudo python -c "' + nxOMSKeyMgmt_setup_txt + '"')
+        os.system('/bin/echo -e "' + nxOMSKeyMgmt_setup_txt + '" | sudo python')
         
 
     def tearDown(self):
@@ -1817,4 +1828,4 @@ if __name__ == '__main__':
     s9=unittest2.TestLoader().loadTestsFromTestCase(nxFileInventoryTestCases)
 #    s10=unittest2.TestLoader().loadTestsFromTestCase(nxAvailableUpdatesTestCases)
     alltests = unittest2.TestSuite([s1,s2,s3,s4,s5,s6,s7,s8])
-    unittest2.TextTestRunner(stream=sys.stdout,verbosity=3).run(alltests)
+    unittest2.TextTestRunner(stream=sys.stdout,verbosity=3).run(s5)
