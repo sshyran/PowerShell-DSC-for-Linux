@@ -99,5 +99,29 @@ def GenerateInventoyMOF(FilePath, Instances):
     codecs.open(FilePath, 'w', 'utf8').write(txt)
     print(FilePath)
     print(txt)
+
+    
+    conffilename = os.path.splitext(FilePath)[0] + '.conf'
+    conffilecontents = '#This is auto-generated file \n \
+<source> \n \
+  type exec \n \
+  tag oms.changetracking \n \
+  command /opt/microsoft/omsconfig/Scripts/PerformInventory.py --InMOF ' + FilePath + ' --OutXML /etc/opt/omi/conf/omsconfig/configuration/ChangeTrackingInventory.xml > /dev/null && cat /etc/opt/omi/conf/omsconfig/configuration/ChangeTrackingInventory.xml \n \
+  format tsv \n \
+  keys xml \n \
+  run_interval 300s \n \
+</source> \n \
+<filter oms.changetracking> \n \
+  type filter_changetracking \n \
+  # Force upload even if the data has not changed \n \
+  force_send_run_interval 24h \n \
+  log_level warn \n \
+</filter>'
+
+    print("Conf file path" + conffilename)
+    if os.path.isfile(conffilename): 
+        shutil.copy2(conffilename, conffilename + '.bak')
+
+    codecs.open(conffilename, 'w', 'utf8').write(conffilecontents)
     return txt
 #    os.system('sudo /opt/microsoft/omsagent/bin/service_control restart')
