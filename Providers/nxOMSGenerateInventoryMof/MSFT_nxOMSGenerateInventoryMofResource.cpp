@@ -1,5 +1,5 @@
 /* @migen@ */
-#include "MSFT_nxOMSInventoryMOFResource.h"
+#include "MSFT_nxOMSGenerateInventoryMofResource.h"
 
 
 #include "debug_tags.hpp"
@@ -10,29 +10,29 @@
 #include <cstdlib>
 
 
-typedef struct _MSFT_nxOMSInventoryMOFResource_Self : public scx::PythonProvider
+typedef struct _MSFT_nxOMSGenerateInventoryMofResource_Self : public scx::PythonProvider
 {
-    /*ctor*/ _MSFT_nxOMSInventoryMOFResource_Self ()
-        : scx::PythonProvider ("nxOMSInventoryMOF")
+    /*ctor*/ _MSFT_nxOMSGenerateInventoryMofResource_Self ()
+        : scx::PythonProvider ("nxOMSGenerateInventoryMof")
     {
         // empty
     }
-} MSFT_nxOMSInventoryMOFResource_Self;
+} MSFT_nxOMSGenerateInventoryMofResource_Self;
 
 
-void MI_CALL MSFT_nxOMSInventoryMOFResource_Load(
-    _Outptr_result_maybenull_ MSFT_nxOMSInventoryMOFResource_Self** self,
+void MI_CALL MSFT_nxOMSGenerateInventoryMofResource_Load(
+    _Outptr_result_maybenull_ MSFT_nxOMSGenerateInventoryMofResource_Self** self,
     _In_opt_ MI_Module_Self* selfModule,
     _In_ MI_Context* context)
 {
-    SCX_BOOKEND_EX ("Load", " name=\"nxOMSInventoryMOF\"");
+    SCX_BOOKEND_EX ("Load", " name=\"nxOMSGenerateInventoryMof\"");
     MI_UNREFERENCED_PARAMETER(selfModule);
     MI_Result res = MI_RESULT_OK;
     if (0 != self)
     {
         if (0 == *self)
         {
-            *self = new MSFT_nxOMSInventoryMOFResource_Self;
+            *self = new MSFT_nxOMSGenerateInventoryMofResource_Self;
             if (EXIT_SUCCESS != (*self)->init ())
             {
                 delete *self;
@@ -48,11 +48,11 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_Load(
     MI_Context_PostResult(context, res);
 }
 
-void MI_CALL MSFT_nxOMSInventoryMOFResource_Unload(
-    _In_opt_ MSFT_nxOMSInventoryMOFResource_Self* self,
+void MI_CALL MSFT_nxOMSGenerateInventoryMofResource_Unload(
+    _In_opt_ MSFT_nxOMSGenerateInventoryMofResource_Self* self,
     _In_ MI_Context* context)
 {
-    SCX_BOOKEND_EX ("Unload", " name=\"nxOMSInventoryMOF\"");
+    SCX_BOOKEND_EX ("Unload", " name=\"nxOMSGenerateInventoryMof\"");
     if (self)
     {
         delete self;
@@ -60,8 +60,8 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_Unload(
     MI_Context_PostResult(context, MI_RESULT_OK);
 }
 
-void MI_CALL MSFT_nxOMSInventoryMOFResource_EnumerateInstances(
-    _In_opt_ MSFT_nxOMSInventoryMOFResource_Self* self,
+void MI_CALL MSFT_nxOMSGenerateInventoryMofResource_EnumerateInstances(
+    _In_opt_ MSFT_nxOMSGenerateInventoryMofResource_Self* self,
     _In_ MI_Context* context,
     _In_opt_z_ const MI_Char* nameSpace,
     _In_opt_z_ const MI_Char* className,
@@ -79,12 +79,12 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_EnumerateInstances(
     MI_Context_PostResult(context, MI_RESULT_NOT_SUPPORTED);
 }
 
-void MI_CALL MSFT_nxOMSInventoryMOFResource_GetInstance(
-    _In_opt_ MSFT_nxOMSInventoryMOFResource_Self* self,
+void MI_CALL MSFT_nxOMSGenerateInventoryMofResource_GetInstance(
+    _In_opt_ MSFT_nxOMSGenerateInventoryMofResource_Self* self,
     _In_ MI_Context* context,
     _In_opt_z_ const MI_Char* nameSpace,
     _In_opt_z_ const MI_Char* className,
-    _In_ const MSFT_nxOMSInventoryMOFResource* instanceName,
+    _In_ const MSFT_nxOMSGenerateInventoryMofResource* instanceName,
     _In_opt_ const MI_PropertySet* propertySet)
 {
     MI_UNREFERENCED_PARAMETER(self);
@@ -96,12 +96,12 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_GetInstance(
     MI_Context_PostResult(context, MI_RESULT_NOT_SUPPORTED);
 }
 
-void MI_CALL MSFT_nxOMSInventoryMOFResource_CreateInstance(
-    _In_opt_ MSFT_nxOMSInventoryMOFResource_Self* self,
+void MI_CALL MSFT_nxOMSGenerateInventoryMofResource_CreateInstance(
+    _In_opt_ MSFT_nxOMSGenerateInventoryMofResource_Self* self,
     _In_ MI_Context* context,
     _In_opt_z_ const MI_Char* nameSpace,
     _In_opt_z_ const MI_Char* className,
-    _In_ const MSFT_nxOMSInventoryMOFResource* newInstance)
+    _In_ const MSFT_nxOMSGenerateInventoryMofResource* newInstance)
 {
     MI_UNREFERENCED_PARAMETER(self);
     MI_UNREFERENCED_PARAMETER(nameSpace);
@@ -111,12 +111,12 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_CreateInstance(
     MI_Context_PostResult(context, MI_RESULT_NOT_SUPPORTED);
 }
 
-void MI_CALL MSFT_nxOMSInventoryMOFResource_ModifyInstance(
-    _In_opt_ MSFT_nxOMSInventoryMOFResource_Self* self,
+void MI_CALL MSFT_nxOMSGenerateInventoryMofResource_ModifyInstance(
+    _In_opt_ MSFT_nxOMSGenerateInventoryMofResource_Self* self,
     _In_ MI_Context* context,
     _In_opt_z_ const MI_Char* nameSpace,
     _In_opt_z_ const MI_Char* className,
-    _In_ const MSFT_nxOMSInventoryMOFResource* modifiedInstance,
+    _In_ const MSFT_nxOMSGenerateInventoryMofResource* modifiedInstance,
     _In_opt_ const MI_PropertySet* propertySet)
 {
     MI_UNREFERENCED_PARAMETER(self);
@@ -128,12 +128,12 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_ModifyInstance(
     MI_Context_PostResult(context, MI_RESULT_NOT_SUPPORTED);
 }
 
-void MI_CALL MSFT_nxOMSInventoryMOFResource_DeleteInstance(
-    _In_opt_ MSFT_nxOMSInventoryMOFResource_Self* self,
+void MI_CALL MSFT_nxOMSGenerateInventoryMofResource_DeleteInstance(
+    _In_opt_ MSFT_nxOMSGenerateInventoryMofResource_Self* self,
     _In_ MI_Context* context,
     _In_opt_z_ const MI_Char* nameSpace,
     _In_opt_z_ const MI_Char* className,
-    _In_ const MSFT_nxOMSInventoryMOFResource* instanceName)
+    _In_ const MSFT_nxOMSGenerateInventoryMofResource* instanceName)
 {
     MI_UNREFERENCED_PARAMETER(self);
     MI_UNREFERENCED_PARAMETER(nameSpace);
@@ -143,16 +143,16 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_DeleteInstance(
     MI_Context_PostResult(context, MI_RESULT_NOT_SUPPORTED);
 }
 
-void MI_CALL MSFT_nxOMSInventoryMOFResource_Invoke_GetTargetResource(
-    _In_opt_ MSFT_nxOMSInventoryMOFResource_Self* self,
+void MI_CALL MSFT_nxOMSGenerateInventoryMofResource_Invoke_GetTargetResource(
+    _In_opt_ MSFT_nxOMSGenerateInventoryMofResource_Self* self,
     _In_ MI_Context* context,
     _In_opt_z_ const MI_Char* nameSpace,
     _In_opt_z_ const MI_Char* className,
     _In_opt_z_ const MI_Char* methodName,
-    _In_ const MSFT_nxOMSInventoryMOFResource* instanceName,
-    _In_opt_ const MSFT_nxOMSInventoryMOFResource_GetTargetResource* in)
+    _In_ const MSFT_nxOMSGenerateInventoryMofResource* instanceName,
+    _In_opt_ const MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource* in)
 {
-    SCX_BOOKEND_EX ("Get", " name=\"nxOMSInventoryMOF\"");
+    SCX_BOOKEND_EX ("Get", " name=\"nxOMSGenerateInventoryMof\"");
     MI_Result result = MI_RESULT_FAILED;
     if (self)
     {
@@ -163,19 +163,19 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_Invoke_GetTargetResource(
         if (MI_RESULT_OK == result)
         {
             SCX_BOOKEND_PRINT ("packing succeeded!");
-            MSFT_nxOMSInventoryMOFResource_GetTargetResource out;
-            MSFT_nxOMSInventoryMOFResource_GetTargetResource_Construct (&out, context);
-            MSFT_nxOMSInventoryMOFResource_GetTargetResource_Set_MIReturn (&out, 0);
+            MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource out;
+            MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Construct (&out, context);
+            MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Set_MIReturn (&out, 0);
             MI_Value value;
             value.instance = retInstance;
             MI_Instance_SetElement (&out.__instance, "OutputResource", &value,
                                     MI_INSTANCE, 0);
-            result = MSFT_nxOMSInventoryMOFResource_GetTargetResource_Post (&out, context);
+            result = MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Post (&out, context);
             if (MI_RESULT_OK != result)
             {
                 SCX_BOOKEND_PRINT ("post Failed");
             }
-            MSFT_nxOMSInventoryMOFResource_GetTargetResource_Destruct (&out);
+            MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Destruct (&out);
         }
         else
         {
@@ -186,14 +186,14 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_Invoke_GetTargetResource(
     MI_Context_PostResult (context, result);
 }
 
-void MI_CALL MSFT_nxOMSInventoryMOFResource_Invoke_TestTargetResource(
-    _In_opt_ MSFT_nxOMSInventoryMOFResource_Self* self,
+void MI_CALL MSFT_nxOMSGenerateInventoryMofResource_Invoke_TestTargetResource(
+    _In_opt_ MSFT_nxOMSGenerateInventoryMofResource_Self* self,
     _In_ MI_Context* context,
     _In_opt_z_ const MI_Char* nameSpace,
     _In_opt_z_ const MI_Char* className,
     _In_opt_z_ const MI_Char* methodName,
-    _In_ const MSFT_nxOMSInventoryMOFResource* instanceName,
-    _In_opt_ const MSFT_nxOMSInventoryMOFResource_TestTargetResource* in)
+    _In_ const MSFT_nxOMSGenerateInventoryMofResource* instanceName,
+    _In_opt_ const MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource* in)
 {
     MI_Result result = MI_RESULT_FAILED;
     if (self)
@@ -202,26 +202,26 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_Invoke_TestTargetResource(
         result = self->test (in->InputResource.value->__instance, &testResult);
         if (MI_RESULT_OK == result)
         {
-            MSFT_nxOMSInventoryMOFResource_TestTargetResource out;
-            MSFT_nxOMSInventoryMOFResource_TestTargetResource_Construct (&out, context);
-            MSFT_nxOMSInventoryMOFResource_TestTargetResource_Set_Result (
+            MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource out;
+            MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Construct (&out, context);
+            MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Set_Result (
                 &out, testResult);
-            MSFT_nxOMSInventoryMOFResource_TestTargetResource_Set_MIReturn (&out, 0);
-            MSFT_nxOMSInventoryMOFResource_TestTargetResource_Post (&out, context);
-            MSFT_nxOMSInventoryMOFResource_TestTargetResource_Destruct (&out);
+            MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Set_MIReturn (&out, 0);
+            MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Post (&out, context);
+            MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Destruct (&out);
         }
     }
     MI_Context_PostResult (context, result);
 }
 
-void MI_CALL MSFT_nxOMSInventoryMOFResource_Invoke_SetTargetResource(
-    _In_opt_ MSFT_nxOMSInventoryMOFResource_Self* self,
+void MI_CALL MSFT_nxOMSGenerateInventoryMofResource_Invoke_SetTargetResource(
+    _In_opt_ MSFT_nxOMSGenerateInventoryMofResource_Self* self,
     _In_ MI_Context* context,
     _In_opt_z_ const MI_Char* nameSpace,
     _In_opt_z_ const MI_Char* className,
     _In_opt_z_ const MI_Char* methodName,
-    _In_ const MSFT_nxOMSInventoryMOFResource* instanceName,
-    _In_opt_ const MSFT_nxOMSInventoryMOFResource_SetTargetResource* in)
+    _In_ const MSFT_nxOMSGenerateInventoryMofResource* instanceName,
+    _In_opt_ const MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource* in)
 {
     MI_Result result = MI_RESULT_FAILED;
     if (self)
@@ -231,12 +231,12 @@ void MI_CALL MSFT_nxOMSInventoryMOFResource_Invoke_SetTargetResource(
         if (MI_RESULT_OK == result)
         {
             result = setResult;
-            MSFT_nxOMSInventoryMOFResource_SetTargetResource out;
-            MSFT_nxOMSInventoryMOFResource_SetTargetResource_Construct (&out, context);
-            MSFT_nxOMSInventoryMOFResource_SetTargetResource_Set_MIReturn (
+            MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource out;
+            MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Construct (&out, context);
+            MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Set_MIReturn (
                 &out, setResult);
-            MSFT_nxOMSInventoryMOFResource_SetTargetResource_Post (&out, context);
-            MSFT_nxOMSInventoryMOFResource_SetTargetResource_Destruct (&out);
+            MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Post (&out, context);
+            MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Destruct (&out);
         }
     }
     MI_Context_PostResult (context, result);
