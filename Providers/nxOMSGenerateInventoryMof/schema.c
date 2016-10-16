@@ -8,7 +8,7 @@
 */
 #include <ctype.h>
 #include <MI.h>
-#include "MSFT_nxOMSCustomLogResource.h"
+#include "MSFT_nxOMSGenerateInventoryMofResource.h"
 
 /*
 **==============================================================================
@@ -804,107 +804,140 @@ MI_CONST MI_ClassDecl OMI_BaseResource_rtti =
 /*
 **==============================================================================
 **
-** MSFT_nxOMSCustomLogObject
+** MSFT_nxOMSGenerateInventoryMofInstance
 **
 **==============================================================================
 */
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogObject_LogName_Key_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofInstance_InstanceName_Key_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogObject_LogName_Key_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofInstance_InstanceName_Key_qual =
 {
     MI_T("Key"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogObject_LogName_Key_qual_value
+    &MSFT_nxOMSGenerateInventoryMofInstance_InstanceName_Key_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogObject_LogName_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofInstance_InstanceName_quals[] =
 {
-    &MSFT_nxOMSCustomLogObject_LogName_Key_qual,
+    &MSFT_nxOMSGenerateInventoryMofInstance_InstanceName_Key_qual,
 };
 
-/* property MSFT_nxOMSCustomLogObject.LogName */
-static MI_CONST MI_PropertyDecl MSFT_nxOMSCustomLogObject_LogName_prop =
+/* property MSFT_nxOMSGenerateInventoryMofInstance.InstanceName */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofInstance_InstanceName_prop =
 {
     MI_FLAG_PROPERTY|MI_FLAG_KEY|MI_FLAG_READONLY, /* flags */
-    0x006C6507, /* code */
-    MI_T("LogName"), /* name */
-    MSFT_nxOMSCustomLogObject_LogName_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogObject_LogName_quals), /* numQualifiers */
+    0x0069650C, /* code */
+    MI_T("InstanceName"), /* name */
+    MSFT_nxOMSGenerateInventoryMofInstance_InstanceName_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofInstance_InstanceName_quals), /* numQualifiers */
     MI_STRING, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogObject, LogName), /* offset */
-    MI_T("MSFT_nxOMSCustomLogObject"), /* origin */
-    MI_T("MSFT_nxOMSCustomLogObject"), /* propagator */
+    offsetof(MSFT_nxOMSGenerateInventoryMofInstance, InstanceName), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofInstance"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofInstance"), /* propagator */
     NULL,
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogObject_FilePath_Write_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofInstance_ClassName_Write_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogObject_FilePath_Write_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofInstance_ClassName_Write_qual =
 {
     MI_T("Write"),
     MI_BOOLEAN,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogObject_FilePath_Write_qual_value
+    &MSFT_nxOMSGenerateInventoryMofInstance_ClassName_Write_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogObject_FilePath_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofInstance_ClassName_quals[] =
 {
-    &MSFT_nxOMSCustomLogObject_FilePath_Write_qual,
+    &MSFT_nxOMSGenerateInventoryMofInstance_ClassName_Write_qual,
 };
 
-/* property MSFT_nxOMSCustomLogObject.FilePath */
-static MI_CONST MI_PropertyDecl MSFT_nxOMSCustomLogObject_FilePath_prop =
+/* property MSFT_nxOMSGenerateInventoryMofInstance.ClassName */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofInstance_ClassName_prop =
 {
     MI_FLAG_PROPERTY, /* flags */
-    0x00666808, /* code */
-    MI_T("FilePath"), /* name */
-    MSFT_nxOMSCustomLogObject_FilePath_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogObject_FilePath_quals), /* numQualifiers */
-    MI_STRINGA, /* type */
+    0x00636509, /* code */
+    MI_T("ClassName"), /* name */
+    MSFT_nxOMSGenerateInventoryMofInstance_ClassName_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofInstance_ClassName_quals), /* numQualifiers */
+    MI_STRING, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogObject, FilePath), /* offset */
-    MI_T("MSFT_nxOMSCustomLogObject"), /* origin */
-    MI_T("MSFT_nxOMSCustomLogObject"), /* propagator */
+    offsetof(MSFT_nxOMSGenerateInventoryMofInstance, ClassName), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofInstance"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofInstance"), /* propagator */
     NULL,
 };
 
-static MI_PropertyDecl MI_CONST* MI_CONST MSFT_nxOMSCustomLogObject_props[] =
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofInstance_Properties_Write_qual_value = 1;
+
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofInstance_Properties_Write_qual =
 {
-    &MSFT_nxOMSCustomLogObject_LogName_prop,
-    &MSFT_nxOMSCustomLogObject_FilePath_prop,
+    MI_T("Write"),
+    MI_BOOLEAN,
+    MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
+    &MSFT_nxOMSGenerateInventoryMofInstance_Properties_Write_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogObject_ClassVersion_qual_value = MI_T("1.0.0");
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofInstance_Properties_quals[] =
+{
+    &MSFT_nxOMSGenerateInventoryMofInstance_Properties_Write_qual,
+};
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogObject_ClassVersion_qual =
+/* property MSFT_nxOMSGenerateInventoryMofInstance.Properties */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofInstance_Properties_prop =
+{
+    MI_FLAG_PROPERTY, /* flags */
+    0x0070730A, /* code */
+    MI_T("Properties"), /* name */
+    MSFT_nxOMSGenerateInventoryMofInstance_Properties_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofInstance_Properties_quals), /* numQualifiers */
+    MI_STRINGA, /* type */
+    NULL, /* className */
+    0, /* subscript */
+    offsetof(MSFT_nxOMSGenerateInventoryMofInstance, Properties), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofInstance"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofInstance"), /* propagator */
+    NULL,
+};
+
+static MI_PropertyDecl MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofInstance_props[] =
+{
+    &MSFT_nxOMSGenerateInventoryMofInstance_InstanceName_prop,
+    &MSFT_nxOMSGenerateInventoryMofInstance_ClassName_prop,
+    &MSFT_nxOMSGenerateInventoryMofInstance_Properties_prop,
+};
+
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofInstance_ClassVersion_qual_value = MI_T("1.0.0");
+
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofInstance_ClassVersion_qual =
 {
     MI_T("ClassVersion"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_RESTRICTED,
-    &MSFT_nxOMSCustomLogObject_ClassVersion_qual_value
+    &MSFT_nxOMSGenerateInventoryMofInstance_ClassVersion_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogObject_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofInstance_quals[] =
 {
-    &MSFT_nxOMSCustomLogObject_ClassVersion_qual,
+    &MSFT_nxOMSGenerateInventoryMofInstance_ClassVersion_qual,
 };
 
-/* class MSFT_nxOMSCustomLogObject */
-MI_CONST MI_ClassDecl MSFT_nxOMSCustomLogObject_rtti =
+/* class MSFT_nxOMSGenerateInventoryMofInstance */
+MI_CONST MI_ClassDecl MSFT_nxOMSGenerateInventoryMofInstance_rtti =
 {
     MI_FLAG_CLASS, /* flags */
-    0x006D7419, /* code */
-    MI_T("MSFT_nxOMSCustomLogObject"), /* name */
-    MSFT_nxOMSCustomLogObject_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogObject_quals), /* numQualifiers */
-    MSFT_nxOMSCustomLogObject_props, /* properties */
-    MI_COUNT(MSFT_nxOMSCustomLogObject_props), /* numProperties */
-    sizeof(MSFT_nxOMSCustomLogObject), /* size */
+    0x006D6526, /* code */
+    MI_T("MSFT_nxOMSGenerateInventoryMofInstance"), /* name */
+    MSFT_nxOMSGenerateInventoryMofInstance_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofInstance_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofInstance_props, /* properties */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofInstance_props), /* numProperties */
+    sizeof(MSFT_nxOMSGenerateInventoryMofInstance), /* size */
     NULL, /* superClass */
     NULL, /* superClassDecl */
     NULL, /* methods */
@@ -917,862 +950,1027 @@ MI_CONST MI_ClassDecl MSFT_nxOMSCustomLogObject_rtti =
 /*
 **==============================================================================
 **
-** MSFT_nxOMSCustomLogResource
+** MSFT_nxOMSGenerateInventoryMofResource
 **
 **==============================================================================
 */
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_Name_Key_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_FileName_Key_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_Name_Key_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_FileName_Key_qual =
 {
     MI_T("Key"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_Name_Key_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_FileName_Key_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_Name_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_FileName_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_Name_Key_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_FileName_Key_qual,
 };
 
-/* property MSFT_nxOMSCustomLogResource.Name */
-static MI_CONST MI_PropertyDecl MSFT_nxOMSCustomLogResource_Name_prop =
+/* property MSFT_nxOMSGenerateInventoryMofResource.FileName */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofResource_FileName_prop =
 {
     MI_FLAG_PROPERTY|MI_FLAG_KEY|MI_FLAG_READONLY, /* flags */
-    0x006E6504, /* code */
-    MI_T("Name"), /* name */
-    MSFT_nxOMSCustomLogResource_Name_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_Name_quals), /* numQualifiers */
+    0x00666508, /* code */
+    MI_T("FileName"), /* name */
+    MSFT_nxOMSGenerateInventoryMofResource_FileName_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_FileName_quals), /* numQualifiers */
     MI_STRING, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource, Name), /* offset */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* origin */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* propagator */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource, FileName), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
     NULL,
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_EnableCustomLogConfiguration_Write_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_Enable_Write_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_EnableCustomLogConfiguration_Write_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_Enable_Write_qual =
 {
     MI_T("Write"),
     MI_BOOLEAN,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_EnableCustomLogConfiguration_Write_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_Enable_Write_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_EnableCustomLogConfiguration_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_Enable_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_EnableCustomLogConfiguration_Write_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_Enable_Write_qual,
 };
 
-/* property MSFT_nxOMSCustomLogResource.EnableCustomLogConfiguration */
-static MI_CONST MI_PropertyDecl MSFT_nxOMSCustomLogResource_EnableCustomLogConfiguration_prop =
+/* property MSFT_nxOMSGenerateInventoryMofResource.Enable */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofResource_Enable_prop =
 {
     MI_FLAG_PROPERTY, /* flags */
-    0x00656E1C, /* code */
-    MI_T("EnableCustomLogConfiguration"), /* name */
-    MSFT_nxOMSCustomLogResource_EnableCustomLogConfiguration_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_EnableCustomLogConfiguration_quals), /* numQualifiers */
+    0x00656506, /* code */
+    MI_T("Enable"), /* name */
+    MSFT_nxOMSGenerateInventoryMofResource_Enable_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_Enable_quals), /* numQualifiers */
     MI_BOOLEAN, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource, EnableCustomLogConfiguration), /* offset */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* origin */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* propagator */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource, Enable), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
     NULL,
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_CustomLogObjects_Write_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_Instances_Write_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_CustomLogObjects_Write_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_Instances_Write_qual =
 {
     MI_T("Write"),
     MI_BOOLEAN,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_CustomLogObjects_Write_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_Instances_Write_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_CustomLogObjects_EmbeddedInstance_qual_value = MI_T("MSFT_nxOMSCustomLogObject");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_Instances_EmbeddedInstance_qual_value = MI_T("MSFT_nxOMSGenerateInventoryMofInstance");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_CustomLogObjects_EmbeddedInstance_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_Instances_EmbeddedInstance_qual =
 {
     MI_T("EmbeddedInstance"),
     MI_STRING,
     MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_CustomLogObjects_EmbeddedInstance_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_Instances_EmbeddedInstance_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_CustomLogObjects_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_Instances_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_CustomLogObjects_Write_qual,
-    &MSFT_nxOMSCustomLogResource_CustomLogObjects_EmbeddedInstance_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_Instances_Write_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_Instances_EmbeddedInstance_qual,
 };
 
-/* property MSFT_nxOMSCustomLogResource.CustomLogObjects */
-static MI_CONST MI_PropertyDecl MSFT_nxOMSCustomLogResource_CustomLogObjects_prop =
+/* property MSFT_nxOMSGenerateInventoryMofResource.Instances */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofResource_Instances_prop =
 {
     MI_FLAG_PROPERTY, /* flags */
-    0x00637310, /* code */
-    MI_T("CustomLogObjects"), /* name */
-    MSFT_nxOMSCustomLogResource_CustomLogObjects_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_CustomLogObjects_quals), /* numQualifiers */
+    0x00697309, /* code */
+    MI_T("Instances"), /* name */
+    MSFT_nxOMSGenerateInventoryMofResource_Instances_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_Instances_quals), /* numQualifiers */
     MI_INSTANCEA, /* type */
-    MI_T("MSFT_nxOMSCustomLogObject"), /* className */
+    MI_T("MSFT_nxOMSGenerateInventoryMofInstance"), /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource, CustomLogObjects), /* offset */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* origin */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* propagator */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource, Instances), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
     NULL,
 };
 
-static MI_PropertyDecl MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_props[] =
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_RunIntervalInSeconds_Write_qual_value = 1;
+
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_RunIntervalInSeconds_Write_qual =
 {
-    &MSFT_nxOMSCustomLogResource_Name_prop,
-    &MSFT_nxOMSCustomLogResource_EnableCustomLogConfiguration_prop,
-    &MSFT_nxOMSCustomLogResource_CustomLogObjects_prop,
+    MI_T("Write"),
+    MI_BOOLEAN,
+    MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
+    &MSFT_nxOMSGenerateInventoryMofResource_RunIntervalInSeconds_Write_qual_value
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_GetTargetResource_Static_qual_value = 1;
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_RunIntervalInSeconds_quals[] =
+{
+    &MSFT_nxOMSGenerateInventoryMofResource_RunIntervalInSeconds_Write_qual,
+};
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_Static_qual =
+/* property MSFT_nxOMSGenerateInventoryMofResource.RunIntervalInSeconds */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofResource_RunIntervalInSeconds_prop =
+{
+    MI_FLAG_PROPERTY, /* flags */
+    0x00727314, /* code */
+    MI_T("RunIntervalInSeconds"), /* name */
+    MSFT_nxOMSGenerateInventoryMofResource_RunIntervalInSeconds_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_RunIntervalInSeconds_quals), /* numQualifiers */
+    MI_UINT64, /* type */
+    NULL, /* className */
+    0, /* subscript */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource, RunIntervalInSeconds), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
+    NULL,
+};
+
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_Tag_Write_qual_value = 1;
+
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_Tag_Write_qual =
+{
+    MI_T("Write"),
+    MI_BOOLEAN,
+    MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
+    &MSFT_nxOMSGenerateInventoryMofResource_Tag_Write_qual_value
+};
+
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_Tag_quals[] =
+{
+    &MSFT_nxOMSGenerateInventoryMofResource_Tag_Write_qual,
+};
+
+/* property MSFT_nxOMSGenerateInventoryMofResource.Tag */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofResource_Tag_prop =
+{
+    MI_FLAG_PROPERTY, /* flags */
+    0x00746703, /* code */
+    MI_T("Tag"), /* name */
+    MSFT_nxOMSGenerateInventoryMofResource_Tag_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_Tag_quals), /* numQualifiers */
+    MI_STRING, /* type */
+    NULL, /* className */
+    0, /* subscript */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource, Tag), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
+    NULL,
+};
+
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_Format_Write_qual_value = 1;
+
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_Format_Write_qual =
+{
+    MI_T("Write"),
+    MI_BOOLEAN,
+    MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
+    &MSFT_nxOMSGenerateInventoryMofResource_Format_Write_qual_value
+};
+
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_Format_quals[] =
+{
+    &MSFT_nxOMSGenerateInventoryMofResource_Format_Write_qual,
+};
+
+/* property MSFT_nxOMSGenerateInventoryMofResource.Format */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofResource_Format_prop =
+{
+    MI_FLAG_PROPERTY, /* flags */
+    0x00667406, /* code */
+    MI_T("Format"), /* name */
+    MSFT_nxOMSGenerateInventoryMofResource_Format_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_Format_quals), /* numQualifiers */
+    MI_STRING, /* type */
+    NULL, /* className */
+    0, /* subscript */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource, Format), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
+    NULL,
+};
+
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_FilterType_Write_qual_value = 1;
+
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_FilterType_Write_qual =
+{
+    MI_T("Write"),
+    MI_BOOLEAN,
+    MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
+    &MSFT_nxOMSGenerateInventoryMofResource_FilterType_Write_qual_value
+};
+
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_FilterType_quals[] =
+{
+    &MSFT_nxOMSGenerateInventoryMofResource_FilterType_Write_qual,
+};
+
+/* property MSFT_nxOMSGenerateInventoryMofResource.FilterType */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofResource_FilterType_prop =
+{
+    MI_FLAG_PROPERTY, /* flags */
+    0x0066650A, /* code */
+    MI_T("FilterType"), /* name */
+    MSFT_nxOMSGenerateInventoryMofResource_FilterType_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_FilterType_quals), /* numQualifiers */
+    MI_STRING, /* type */
+    NULL, /* className */
+    0, /* subscript */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource, FilterType), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
+    NULL,
+};
+
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_Configuration_Write_qual_value = 1;
+
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_Configuration_Write_qual =
+{
+    MI_T("Write"),
+    MI_BOOLEAN,
+    MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
+    &MSFT_nxOMSGenerateInventoryMofResource_Configuration_Write_qual_value
+};
+
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_Configuration_quals[] =
+{
+    &MSFT_nxOMSGenerateInventoryMofResource_Configuration_Write_qual,
+};
+
+/* property MSFT_nxOMSGenerateInventoryMofResource.Configuration */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSGenerateInventoryMofResource_Configuration_prop =
+{
+    MI_FLAG_PROPERTY, /* flags */
+    0x00636E0D, /* code */
+    MI_T("Configuration"), /* name */
+    MSFT_nxOMSGenerateInventoryMofResource_Configuration_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_Configuration_quals), /* numQualifiers */
+    MI_STRINGA, /* type */
+    NULL, /* className */
+    0, /* subscript */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource, Configuration), /* offset */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
+    NULL,
+};
+
+static MI_PropertyDecl MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_props[] =
+{
+    &MSFT_nxOMSGenerateInventoryMofResource_FileName_prop,
+    &MSFT_nxOMSGenerateInventoryMofResource_Enable_prop,
+    &MSFT_nxOMSGenerateInventoryMofResource_Instances_prop,
+    &MSFT_nxOMSGenerateInventoryMofResource_RunIntervalInSeconds_prop,
+    &MSFT_nxOMSGenerateInventoryMofResource_Tag_prop,
+    &MSFT_nxOMSGenerateInventoryMofResource_Format_prop,
+    &MSFT_nxOMSGenerateInventoryMofResource_FilterType_prop,
+    &MSFT_nxOMSGenerateInventoryMofResource_Configuration_prop,
+};
+
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Static_qual_value = 1;
+
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Static_qual =
 {
     MI_T("Static"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_Static_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Static_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_GetTargetResource_Description_qual_value = MI_T("2");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Description_qual_value = MI_T("2");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_GetTargetResource_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_Static_qual,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Static_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Description_qual,
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_In_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_In_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_In_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_In_qual =
 {
     MI_T("In"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_In_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_In_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_EmbeddedInstance_qual_value = MI_T("MSFT_nxOMSCustomLogResource");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_EmbeddedInstance_qual_value = MI_T("MSFT_nxOMSGenerateInventoryMofResource");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_EmbeddedInstance_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_EmbeddedInstance_qual =
 {
     MI_T("EmbeddedInstance"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_EmbeddedInstance_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_EmbeddedInstance_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_Description_qual_value = MI_T("3");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_Description_qual_value = MI_T("3");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_In_qual,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_EmbeddedInstance_qual,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_In_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_EmbeddedInstance_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.GetTargetResource(): InputResource */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.GetTargetResource(): InputResource */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_IN, /* flags */
     0x0069650D, /* code */
     MI_T("InputResource"), /* name */
-    MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_quals), /* numQualifiers */
     MI_INSTANCE, /* type */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* className */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_GetTargetResource, InputResource), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource, InputResource), /* offset */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_In_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_In_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_In_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_In_qual =
 {
     MI_T("In"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_In_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_In_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_Description_qual_value = MI_T("4");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_Description_qual_value = MI_T("4");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_In_qual,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_In_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.GetTargetResource(): Flags */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.GetTargetResource(): Flags */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_IN, /* flags */
     0x00667305, /* code */
     MI_T("Flags"), /* name */
-    MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_quals), /* numQualifiers */
     MI_UINT32, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_GetTargetResource, Flags), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource, Flags), /* offset */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_Out_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_Out_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_Out_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_Out_qual =
 {
     MI_T("Out"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_Out_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_Out_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_EmbeddedInstance_qual_value = MI_T("MSFT_nxOMSCustomLogResource");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_EmbeddedInstance_qual_value = MI_T("MSFT_nxOMSGenerateInventoryMofResource");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_EmbeddedInstance_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_EmbeddedInstance_qual =
 {
     MI_T("EmbeddedInstance"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_EmbeddedInstance_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_EmbeddedInstance_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_Description_qual_value = MI_T("5");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_Description_qual_value = MI_T("5");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_Out_qual,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_EmbeddedInstance_qual,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_Out_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_EmbeddedInstance_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.GetTargetResource(): OutputResource */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.GetTargetResource(): OutputResource */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_OUT, /* flags */
     0x006F650E, /* code */
     MI_T("OutputResource"), /* name */
-    MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_quals), /* numQualifiers */
     MI_INSTANCE, /* type */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* className */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_GetTargetResource, OutputResource), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource, OutputResource), /* offset */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_Static_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_Static_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_Static_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_Static_qual =
 {
     MI_T("Static"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_Static_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_Static_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_Description_qual_value = MI_T("2");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_Description_qual_value = MI_T("2");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_Static_qual,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_Static_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.GetTargetResource(): MIReturn */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.GetTargetResource(): MIReturn */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_OUT, /* flags */
     0x006D6E08, /* code */
     MI_T("MIReturn"), /* name */
-    MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_quals), /* numQualifiers */
     MI_UINT32, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_GetTargetResource, MIReturn), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource, MIReturn), /* offset */
 };
 
-static MI_ParameterDecl MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_GetTargetResource_params[] =
+static MI_ParameterDecl MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_params[] =
 {
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_MIReturn_param,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_InputResource_param,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_Flags_param,
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_OutputResource_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_MIReturn_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_InputResource_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_Flags_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_OutputResource_param,
 };
 
-/* method MSFT_nxOMSCustomLogResource.GetTargetResource() */
-MI_CONST MI_MethodDecl MSFT_nxOMSCustomLogResource_GetTargetResource_rtti =
+/* method MSFT_nxOMSGenerateInventoryMofResource.GetTargetResource() */
+MI_CONST MI_MethodDecl MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_rtti =
 {
     MI_FLAG_METHOD|MI_FLAG_STATIC, /* flags */
     0x00676511, /* code */
     MI_T("GetTargetResource"), /* name */
-    MSFT_nxOMSCustomLogResource_GetTargetResource_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_GetTargetResource_quals), /* numQualifiers */
-    MSFT_nxOMSCustomLogResource_GetTargetResource_params, /* parameters */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_GetTargetResource_params), /* numParameters */
-    sizeof(MSFT_nxOMSCustomLogResource_GetTargetResource), /* size */
+    MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_params, /* parameters */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_params), /* numParameters */
+    sizeof(MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource), /* size */
     MI_UINT32, /* returnType */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* origin */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* propagator */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
     &schemaDecl, /* schema */
-    (MI_ProviderFT_Invoke)MSFT_nxOMSCustomLogResource_Invoke_GetTargetResource, /* method */
+    (MI_ProviderFT_Invoke)MSFT_nxOMSGenerateInventoryMofResource_Invoke_GetTargetResource, /* method */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_TestTargetResource_Static_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Static_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_Static_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Static_qual =
 {
     MI_T("Static"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Static_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Static_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_TestTargetResource_Description_qual_value = MI_T("6");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Description_qual_value = MI_T("6");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_TestTargetResource_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Static_qual,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Static_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Description_qual,
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_In_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_In_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_In_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_In_qual =
 {
     MI_T("In"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_In_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_In_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_EmbeddedInstance_qual_value = MI_T("MSFT_nxOMSCustomLogResource");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_EmbeddedInstance_qual_value = MI_T("MSFT_nxOMSGenerateInventoryMofResource");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_EmbeddedInstance_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_EmbeddedInstance_qual =
 {
     MI_T("EmbeddedInstance"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_EmbeddedInstance_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_EmbeddedInstance_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_Description_qual_value = MI_T("7");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_Description_qual_value = MI_T("7");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_In_qual,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_EmbeddedInstance_qual,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_In_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_EmbeddedInstance_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.TestTargetResource(): InputResource */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.TestTargetResource(): InputResource */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_IN, /* flags */
     0x0069650D, /* code */
     MI_T("InputResource"), /* name */
-    MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_quals), /* numQualifiers */
     MI_INSTANCE, /* type */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* className */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_TestTargetResource, InputResource), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource, InputResource), /* offset */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_In_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_In_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_In_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_In_qual =
 {
     MI_T("In"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_In_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_In_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_Description_qual_value = MI_T("8");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_Description_qual_value = MI_T("8");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_In_qual,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_In_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.TestTargetResource(): Flags */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.TestTargetResource(): Flags */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_IN, /* flags */
     0x00667305, /* code */
     MI_T("Flags"), /* name */
-    MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_quals), /* numQualifiers */
     MI_UINT32, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_TestTargetResource, Flags), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource, Flags), /* offset */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_TestTargetResource_Result_Out_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_Out_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_Result_Out_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_Out_qual =
 {
     MI_T("Out"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Result_Out_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_Out_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_TestTargetResource_Result_Description_qual_value = MI_T("9");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_Description_qual_value = MI_T("9");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_Result_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Result_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_TestTargetResource_Result_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Result_Out_qual,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Result_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_Out_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.TestTargetResource(): Result */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_TestTargetResource_Result_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.TestTargetResource(): Result */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_OUT, /* flags */
     0x00727406, /* code */
     MI_T("Result"), /* name */
-    MSFT_nxOMSCustomLogResource_TestTargetResource_Result_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_TestTargetResource_Result_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_quals), /* numQualifiers */
     MI_BOOLEAN, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_TestTargetResource, Result), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource, Result), /* offset */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_Out_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_Out_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_Out_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_Out_qual =
 {
     MI_T("Out"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_Out_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_Out_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_Description_qual_value = MI_T("10");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_Description_qual_value = MI_T("10");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_Out_qual,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_Out_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.TestTargetResource(): ProviderContext */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.TestTargetResource(): ProviderContext */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_OUT, /* flags */
     0x0070740F, /* code */
     MI_T("ProviderContext"), /* name */
-    MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_quals), /* numQualifiers */
     MI_UINT64, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_TestTargetResource, ProviderContext), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource, ProviderContext), /* offset */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_Static_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_Static_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_Static_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_Static_qual =
 {
     MI_T("Static"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_Static_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_Static_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_Description_qual_value = MI_T("6");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_Description_qual_value = MI_T("6");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_Static_qual,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_Static_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.TestTargetResource(): MIReturn */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.TestTargetResource(): MIReturn */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_OUT, /* flags */
     0x006D6E08, /* code */
     MI_T("MIReturn"), /* name */
-    MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_quals), /* numQualifiers */
     MI_UINT32, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_TestTargetResource, MIReturn), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource, MIReturn), /* offset */
 };
 
-static MI_ParameterDecl MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_TestTargetResource_params[] =
+static MI_ParameterDecl MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_params[] =
 {
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_MIReturn_param,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_InputResource_param,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Flags_param,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_Result_param,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_ProviderContext_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_MIReturn_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_InputResource_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Flags_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_Result_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_ProviderContext_param,
 };
 
-/* method MSFT_nxOMSCustomLogResource.TestTargetResource() */
-MI_CONST MI_MethodDecl MSFT_nxOMSCustomLogResource_TestTargetResource_rtti =
+/* method MSFT_nxOMSGenerateInventoryMofResource.TestTargetResource() */
+MI_CONST MI_MethodDecl MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_rtti =
 {
     MI_FLAG_METHOD|MI_FLAG_STATIC, /* flags */
     0x00746512, /* code */
     MI_T("TestTargetResource"), /* name */
-    MSFT_nxOMSCustomLogResource_TestTargetResource_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_TestTargetResource_quals), /* numQualifiers */
-    MSFT_nxOMSCustomLogResource_TestTargetResource_params, /* parameters */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_TestTargetResource_params), /* numParameters */
-    sizeof(MSFT_nxOMSCustomLogResource_TestTargetResource), /* size */
+    MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_params, /* parameters */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_params), /* numParameters */
+    sizeof(MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource), /* size */
     MI_UINT32, /* returnType */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* origin */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* propagator */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
     &schemaDecl, /* schema */
-    (MI_ProviderFT_Invoke)MSFT_nxOMSCustomLogResource_Invoke_TestTargetResource, /* method */
+    (MI_ProviderFT_Invoke)MSFT_nxOMSGenerateInventoryMofResource_Invoke_TestTargetResource, /* method */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_SetTargetResource_Static_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Static_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_Static_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Static_qual =
 {
     MI_T("Static"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_Static_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Static_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_SetTargetResource_Description_qual_value = MI_T("11");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Description_qual_value = MI_T("11");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_SetTargetResource_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_Static_qual,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Static_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Description_qual,
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_In_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_In_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_In_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_In_qual =
 {
     MI_T("In"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_In_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_In_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_EmbeddedInstance_qual_value = MI_T("MSFT_nxOMSCustomLogResource");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_EmbeddedInstance_qual_value = MI_T("MSFT_nxOMSGenerateInventoryMofResource");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_EmbeddedInstance_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_EmbeddedInstance_qual =
 {
     MI_T("EmbeddedInstance"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_EmbeddedInstance_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_EmbeddedInstance_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_Description_qual_value = MI_T("7");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_Description_qual_value = MI_T("7");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_In_qual,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_EmbeddedInstance_qual,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_In_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_EmbeddedInstance_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.SetTargetResource(): InputResource */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.SetTargetResource(): InputResource */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_IN, /* flags */
     0x0069650D, /* code */
     MI_T("InputResource"), /* name */
-    MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_quals), /* numQualifiers */
     MI_INSTANCE, /* type */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* className */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_SetTargetResource, InputResource), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource, InputResource), /* offset */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_In_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_In_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_In_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_In_qual =
 {
     MI_T("In"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_In_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_In_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_Description_qual_value = MI_T("12");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_Description_qual_value = MI_T("12");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_In_qual,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_In_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.SetTargetResource(): ProviderContext */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.SetTargetResource(): ProviderContext */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_IN, /* flags */
     0x0070740F, /* code */
     MI_T("ProviderContext"), /* name */
-    MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_quals), /* numQualifiers */
     MI_UINT64, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_SetTargetResource, ProviderContext), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource, ProviderContext), /* offset */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_In_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_In_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_In_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_In_qual =
 {
     MI_T("In"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_In_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_In_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_Description_qual_value = MI_T("8");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_Description_qual_value = MI_T("8");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_In_qual,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_In_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.SetTargetResource(): Flags */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.SetTargetResource(): Flags */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_IN, /* flags */
     0x00667305, /* code */
     MI_T("Flags"), /* name */
-    MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_quals), /* numQualifiers */
     MI_UINT32, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_SetTargetResource, Flags), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource, Flags), /* offset */
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_Static_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_Static_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_Static_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_Static_qual =
 {
     MI_T("Static"),
     MI_BOOLEAN,
     MI_FLAG_DISABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_Static_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_Static_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_Description_qual_value = MI_T("11");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_Description_qual_value = MI_T("11");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_Description_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_Static_qual,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_Static_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_Description_qual,
 };
 
-/* parameter MSFT_nxOMSCustomLogResource.SetTargetResource(): MIReturn */
-static MI_CONST MI_ParameterDecl MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_param =
+/* parameter MSFT_nxOMSGenerateInventoryMofResource.SetTargetResource(): MIReturn */
+static MI_CONST MI_ParameterDecl MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_param =
 {
     MI_FLAG_PARAMETER|MI_FLAG_OUT, /* flags */
     0x006D6E08, /* code */
     MI_T("MIReturn"), /* name */
-    MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_quals), /* numQualifiers */
     MI_UINT32, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSCustomLogResource_SetTargetResource, MIReturn), /* offset */
+    offsetof(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource, MIReturn), /* offset */
 };
 
-static MI_ParameterDecl MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_SetTargetResource_params[] =
+static MI_ParameterDecl MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_params[] =
 {
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_MIReturn_param,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_InputResource_param,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_ProviderContext_param,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_Flags_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_MIReturn_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_InputResource_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_ProviderContext_param,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_Flags_param,
 };
 
-/* method MSFT_nxOMSCustomLogResource.SetTargetResource() */
-MI_CONST MI_MethodDecl MSFT_nxOMSCustomLogResource_SetTargetResource_rtti =
+/* method MSFT_nxOMSGenerateInventoryMofResource.SetTargetResource() */
+MI_CONST MI_MethodDecl MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_rtti =
 {
     MI_FLAG_METHOD|MI_FLAG_STATIC, /* flags */
     0x00736511, /* code */
     MI_T("SetTargetResource"), /* name */
-    MSFT_nxOMSCustomLogResource_SetTargetResource_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_SetTargetResource_quals), /* numQualifiers */
-    MSFT_nxOMSCustomLogResource_SetTargetResource_params, /* parameters */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_SetTargetResource_params), /* numParameters */
-    sizeof(MSFT_nxOMSCustomLogResource_SetTargetResource), /* size */
+    MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_params, /* parameters */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_params), /* numParameters */
+    sizeof(MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource), /* size */
     MI_UINT32, /* returnType */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* origin */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* propagator */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* origin */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* propagator */
     &schemaDecl, /* schema */
-    (MI_ProviderFT_Invoke)MSFT_nxOMSCustomLogResource_Invoke_SetTargetResource, /* method */
+    (MI_ProviderFT_Invoke)MSFT_nxOMSGenerateInventoryMofResource_Invoke_SetTargetResource, /* method */
 };
 
-static MI_MethodDecl MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_meths[] =
+static MI_MethodDecl MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_meths[] =
 {
-    &MSFT_nxOMSCustomLogResource_GetTargetResource_rtti,
-    &MSFT_nxOMSCustomLogResource_TestTargetResource_rtti,
-    &MSFT_nxOMSCustomLogResource_SetTargetResource_rtti,
+    &MSFT_nxOMSGenerateInventoryMofResource_GetTargetResource_rtti,
+    &MSFT_nxOMSGenerateInventoryMofResource_TestTargetResource_rtti,
+    &MSFT_nxOMSGenerateInventoryMofResource_SetTargetResource_rtti,
 };
 
-static MI_CONST MI_ProviderFT MSFT_nxOMSCustomLogResource_funcs =
+static MI_CONST MI_ProviderFT MSFT_nxOMSGenerateInventoryMofResource_funcs =
 {
-  (MI_ProviderFT_Load)MSFT_nxOMSCustomLogResource_Load,
-  (MI_ProviderFT_Unload)MSFT_nxOMSCustomLogResource_Unload,
-  (MI_ProviderFT_GetInstance)MSFT_nxOMSCustomLogResource_GetInstance,
-  (MI_ProviderFT_EnumerateInstances)MSFT_nxOMSCustomLogResource_EnumerateInstances,
-  (MI_ProviderFT_CreateInstance)MSFT_nxOMSCustomLogResource_CreateInstance,
-  (MI_ProviderFT_ModifyInstance)MSFT_nxOMSCustomLogResource_ModifyInstance,
-  (MI_ProviderFT_DeleteInstance)MSFT_nxOMSCustomLogResource_DeleteInstance,
+  (MI_ProviderFT_Load)MSFT_nxOMSGenerateInventoryMofResource_Load,
+  (MI_ProviderFT_Unload)MSFT_nxOMSGenerateInventoryMofResource_Unload,
+  (MI_ProviderFT_GetInstance)MSFT_nxOMSGenerateInventoryMofResource_GetInstance,
+  (MI_ProviderFT_EnumerateInstances)MSFT_nxOMSGenerateInventoryMofResource_EnumerateInstances,
+  (MI_ProviderFT_CreateInstance)MSFT_nxOMSGenerateInventoryMofResource_CreateInstance,
+  (MI_ProviderFT_ModifyInstance)MSFT_nxOMSGenerateInventoryMofResource_ModifyInstance,
+  (MI_ProviderFT_DeleteInstance)MSFT_nxOMSGenerateInventoryMofResource_DeleteInstance,
   (MI_ProviderFT_AssociatorInstances)NULL,
   (MI_ProviderFT_ReferenceInstances)NULL,
   (MI_ProviderFT_EnableIndications)NULL,
@@ -1782,49 +1980,49 @@ static MI_CONST MI_ProviderFT MSFT_nxOMSCustomLogResource_funcs =
   (MI_ProviderFT_Invoke)NULL,
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_Description_qual_value = MI_T("1");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_Description_qual_value = MI_T("1");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_Description_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_Description_qual =
 {
     MI_T("Description"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS|MI_FLAG_TRANSLATABLE,
-    &MSFT_nxOMSCustomLogResource_Description_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_Description_qual_value
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSCustomLogResource_ClassVersion_qual_value = MI_T("1.0.0");
+static MI_CONST MI_Char* MSFT_nxOMSGenerateInventoryMofResource_ClassVersion_qual_value = MI_T("1.0.0");
 
-static MI_CONST MI_Qualifier MSFT_nxOMSCustomLogResource_ClassVersion_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSGenerateInventoryMofResource_ClassVersion_qual =
 {
     MI_T("ClassVersion"),
     MI_STRING,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_RESTRICTED,
-    &MSFT_nxOMSCustomLogResource_ClassVersion_qual_value
+    &MSFT_nxOMSGenerateInventoryMofResource_ClassVersion_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSCustomLogResource_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSGenerateInventoryMofResource_quals[] =
 {
-    &MSFT_nxOMSCustomLogResource_Description_qual,
-    &MSFT_nxOMSCustomLogResource_ClassVersion_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_Description_qual,
+    &MSFT_nxOMSGenerateInventoryMofResource_ClassVersion_qual,
 };
 
-/* class MSFT_nxOMSCustomLogResource */
-MI_CONST MI_ClassDecl MSFT_nxOMSCustomLogResource_rtti =
+/* class MSFT_nxOMSGenerateInventoryMofResource */
+MI_CONST MI_ClassDecl MSFT_nxOMSGenerateInventoryMofResource_rtti =
 {
     MI_FLAG_CLASS, /* flags */
-    0x006D651B, /* code */
-    MI_T("MSFT_nxOMSCustomLogResource"), /* name */
-    MSFT_nxOMSCustomLogResource_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_quals), /* numQualifiers */
-    MSFT_nxOMSCustomLogResource_props, /* properties */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_props), /* numProperties */
-    sizeof(MSFT_nxOMSCustomLogResource), /* size */
+    0x006D6526, /* code */
+    MI_T("MSFT_nxOMSGenerateInventoryMofResource"), /* name */
+    MSFT_nxOMSGenerateInventoryMofResource_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_quals), /* numQualifiers */
+    MSFT_nxOMSGenerateInventoryMofResource_props, /* properties */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_props), /* numProperties */
+    sizeof(MSFT_nxOMSGenerateInventoryMofResource), /* size */
     MI_T("OMI_BaseResource"), /* superClass */
     &OMI_BaseResource_rtti, /* superClassDecl */
-    MSFT_nxOMSCustomLogResource_meths, /* methods */
-    MI_COUNT(MSFT_nxOMSCustomLogResource_meths), /* numMethods */
+    MSFT_nxOMSGenerateInventoryMofResource_meths, /* methods */
+    MI_COUNT(MSFT_nxOMSGenerateInventoryMofResource_meths), /* numMethods */
     &schemaDecl, /* schema */
-    &MSFT_nxOMSCustomLogResource_funcs, /* functions */
+    &MSFT_nxOMSGenerateInventoryMofResource_funcs, /* functions */
     NULL /* owningClass */
 };
 
@@ -1847,8 +2045,8 @@ MI_Server* __mi_server;
 
 static MI_ClassDecl MI_CONST* MI_CONST classes[] =
 {
-    &MSFT_nxOMSCustomLogObject_rtti,
-    &MSFT_nxOMSCustomLogResource_rtti,
+    &MSFT_nxOMSGenerateInventoryMofInstance_rtti,
+    &MSFT_nxOMSGenerateInventoryMofResource_rtti,
     &OMI_BaseResource_rtti,
 };
 
