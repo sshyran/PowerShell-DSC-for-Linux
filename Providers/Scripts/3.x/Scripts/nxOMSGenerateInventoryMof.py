@@ -39,16 +39,16 @@ def init_vars(Instances):
 
     Instances = new_instances
     
-def Set_Marshall(FileName, Enable = False, Instances = None, RunIntervalInSeconds, Tag, Format, FilterType, Configuration):
+def Set_Marshall(FileName, Enable = False, Instances = None, RunIntervalInSeconds = 300, Tag = "default", Format = "tsv", FilterType = "filter_changetracking", Configuration = None):
     init_vars(Instances)
     Set(FileName, Enable, Instances, RunIntervalInSeconds, Tag, Format, FilterType, Configuration)
     return [0]
 
-def Test_Marshall(FileName, Enable = False, Instances = None, RunIntervalInSeconds, Tag, Format, FilterType, Configuration):
+def Test_Marshall(FileName, Enable = False, Instances = None, RunIntervalInSeconds = 300, Tag = "default", Format = "tsv", FilterType = "filter_changetracking", Configuration = None):
     init_vars(Instances)
     return Test(Enable, Instances)
 
-def Get_Marshall(FileName, Enable = False, Instances = None, RunIntervalInSeconds, Tag, Format, FilterType, Configuration):
+def Get_Marshall(FileName, Enable = False, Instances = None, RunIntervalInSeconds = 300, Tag = "default", Format = "tsv", FilterType = "filter_changetracking", Configuration = None):
     arg_names = list(locals().keys())
     init_vars(Instances)
     
@@ -94,11 +94,14 @@ def GenerateInventoyMOF(FileName, Instances, RunIntervalInSeconds, Tag, Format, 
             inventoryMofSection+=new_source
 
     mof_file_path = inventoryMof_path + FileName
+
+    print(mof_file_path)
+
     if os.path.isfile(mof_file_path): 
         shutil.copy2(mof_file_path, mof_file_path + '.bak')
     txt = header + inventoryMofSection + footer 
     codecs.open(mof_file_path, 'w', 'utf8').write(txt)
-    print(mof_file_path)
+
     print(txt)
 
     fileNameWithoutExtension = os.path.splitext(FileName)[0] 
@@ -110,7 +113,7 @@ def GenerateInventoyMOF(FileName, Instances, RunIntervalInSeconds, Tag, Format, 
   command /opt/microsoft/omsconfig/Scripts/PerformInventory.py --InMOF ' + mof_file_path + ' --OutXML /etc/opt/omi/conf/omsconfig/configuration/' + fileNameWithoutExtension + '.xml > /dev/null && cat /etc/opt/omi/conf/omsconfig/configuration/' + fileNameWithoutExtension + '.xml \n \
   format tsv \n \
   keys xml \n \
-  run_interval ' + RunIntervalInSeconds + 's \n \
+  run_interval ' + str(RunIntervalInSeconds) + 's \n \
 </source> \n \
 <filter '+ Tag + '> \n \
   type ' + FilterType + ' \n \
