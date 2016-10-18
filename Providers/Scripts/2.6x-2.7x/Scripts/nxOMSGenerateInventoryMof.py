@@ -91,7 +91,7 @@ def GenerateInventoyMOF(FileName, Instances, RunIntervalInSeconds, Tag, Format, 
             className = instance['ClassName']
             filepaths = '    '+';\n    '.join(instance['Properties'])
             new_source = 'instance of ' + className + '\n{\n'
-            new_source+= filepaths + '\n};\n'
+            new_source+= filepaths + ';\n};\n'
             inventoryMofSection+=new_source
 
     mof_file_path = inventoryMof_path + FileName
