@@ -3584,7 +3584,8 @@ class nxOMSGenerateInventoryMofTestCases(unittest2.TestCase):
         """
         self.original_mof_path = nxOMSGenerateInventoryMof.inventoryMof_path
         nxOMSGenerateInventoryMof.inventoryMof_path = self.mock_mof_path
-        #os.system('rm -rf {0}'.format(self.mock_mof_path))
+        os.system('rm -rf {0}'.format(self.mock_mof_path + 'generatedinventory.mof'))
+        os.system('rm -rf {0}'.format(self.mock_mof_path + 'generatedinventory.conf'))
 
     def tearDown(self):
         """
@@ -3627,27 +3628,26 @@ class nxOMSGenerateInventoryMofTestCases(unittest2.TestCase):
 
         self.assertTrue(nxOMSGenerateInventoryMof.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
 
-#    def testSetOMSGenerateInventoryMof_noinstances(self):
-#        d = { 'FileName': '/tmp/generatedinventory.mof', 'Enable': True, 'Instances': None }
-#        self.assertTrue(nxOMSGenerateInventoryMof.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
+    def testSetOMSGenerateInventoryMof_noinstances(self):
+        d = { 'FileName': 'generatedinventory.mof', 'Enable': True, 'Instances': None }
+        self.assertTrue(nxOMSGenerateInventoryMof.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
 
-#    def testSetOMSGenerateInventoryMof_EnableisFalse(self):
-#        d = { 'FileName': '/tmp/generatedinventory.mof', 'Enable': False, 'Instances': [{ 'InstanceName': 'FileInventory', 'ClassName': 'MSFT_nxFileInventoryResource', 'Properties': [ 'DestinationPath = "/etc/*.conf";', 'Recurse=true;' ] }, { 'InstanceName': 'RegistryInventory', 'ClassName':'MSFT_nxRegistryInventoryResource', 'Properties': [ 'RegistryName=hkeylocal' ] } ] }
+    def testSetOMSGenerateInventoryMof_EnableisFalse(self):
+        d = { 'FileName': 'generatedinventory.mof', 'Enable': False, 'Instances': [{ 'InstanceName': 'FileInventory', 'ClassName': 'MSFT_nxFileInventoryResource', 'Properties': [ 'DestinationPath = "/etc/*.conf";', 'Recurse=true;' ] }, { 'InstanceName': 'RegistryInventory', 'ClassName':'MSFT_nxRegistryInventoryResource', 'Properties': [ 'RegistryName=hkeylocal;' ] } ], 'RunIntervalInSeconds':300, 'Tag': 'Test', 'Format':'tsv', 'FilterType':'filter', 'Configuration':['testname = value'] }
+        for instance in d['Instances']:
+            instance['InstanceName'] = nxOMSGenerateInventoryMof.protocol.MI_String(instance['InstanceName'])
+            instance['ClassName'] = nxOMSGenerateInventoryMof.protocol.MI_String(instance['ClassName'])
+            instance['Properties'] = nxOMSGenerateInventoryMof.protocol.MI_StringA(instance['Properties'])
 
-#        for instance in d['Instances']:
-#            instance['InstanceName'] = nxOMSGenerateInventoryMof.protocol.MI_String(instance['InstanceName'])
-#            instance['ClassName'] = nxOMSGenerateInventoryMof.protocol.MI_String(instance['ClassName'])
-#            instance['Properties'] = nxOMSGenerateInventoryMof.protocol.MI_StringA(instance['Properties'])
-#
-#        self.assertTrue(nxOMSGenerateInventoryMof.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
+        self.assertTrue(nxOMSGenerateInventoryMof.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
 
-#    def testGetOMSGenerateInventoryMof_default(self):
-#        d = { 'FileName': '/tmp/generatedinventory.mof', 'Enable': False, 'Instances': [{ 'InstanceName': 'FileInventory', 'ClassName': 'MSFT_nxFileInventoryResource', 'Properties': [ 'DestinationPath = "/etc/*.conf";', 'Recurse=true;' ] }, { 'InstanceName': 'RegistryInventory', 'ClassName':'MSFT_nxRegistryInventoryResource', 'Properties': [ 'RegistryName=hkeylocal' ] } ] }
-#        m=self.make_MI(0,**d)
-#        g=nxOMSGenerateInventoryMof.Get_Marshall(**d)
-#        print('GET '+ repr(g))
-#        self.assertTrue(check_values(g, m)  ==  True, \
-#        'Get('+repr(g)+' should return ==['+repr(m)+']')
+    def testGetOMSGenerateInventoryMof_default(self):
+        d = { 'FileName': 'generatedinventory.mof', 'Enable': True, 'Instances': [{ 'InstanceName': 'FileInventory', 'ClassName': 'MSFT_nxFileInventoryResource', 'Properties': [ 'DestinationPath = "/etc/*.conf";', 'Recurse=true;' ] }, { 'InstanceName': 'RegistryInventory', 'ClassName':'MSFT_nxRegistryInventoryResource', 'Properties': [ 'RegistryName=hkeylocal;' ] } ], 'RunIntervalInSeconds':300, 'Tag': 'Test', 'Format':'tsv', 'FilterType':'filter', 'Configuration':['testname = value'] }
+        m=self.make_MI(0,**d)
+        g=nxOMSGenerateInventoryMof.Get_Marshall(**d)
+        print('GET '+ repr(g))
+        self.assertTrue(check_values(g, m)  ==  True, \
+        'Get('+repr(g)+' should return ==['+repr(m)+']')
 
 # omsagent is not required to  be running.
 class nxOMSKeyMgmtTestCases(unittest2.TestCase):
@@ -4492,5 +4492,5 @@ if __name__ == '__main__':
     s21=unittest2.TestLoader().loadTestsFromTestCase(nxOMSKeyMgmtTestCases)
     s22=unittest2.TestLoader().loadTestsFromTestCase(nxFileInventoryTestCases)
     s23=unittest2.TestLoader().loadTestsFromTestCase(nxOMSGenerateInventoryMofTestCases) 
-    alltests = unittest2.TestSuite([s23])
+    alltests = unittest2.TestSuite([s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s23])
     unittest2.TextTestRunner(stream=sys.stdout,verbosity=1).run(alltests)

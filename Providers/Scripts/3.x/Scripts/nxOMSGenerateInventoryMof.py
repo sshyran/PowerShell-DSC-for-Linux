@@ -62,6 +62,16 @@ def Get_Marshall(FileName, Enable = False, Instances = None, RunIntervalInSecond
         if instance['Properties'] is not None and len(instance['Properties']):
             instance['Properties'] = protocol.MI_StringA(instance['Properties'])
     Instances = protocol.MI_InstanceA(CurrentInstances)
+    RunIntervalInSeconds = protocol.MI_Uint64(RunIntervalInSeconds)
+    Tag = protocol.MI_String(Tag)
+    Format = protocol.MI_String(Format)
+    FilterType = protocol.MI_String(FilterType)
+
+    if Configuration is None:
+        Configuration = []
+    if Configuration is not None and len(Configuration):
+        Configuration = protocol.MI_StringA(Configuration)
+
     retd = {}
     ld = locals()
     for k in arg_names:

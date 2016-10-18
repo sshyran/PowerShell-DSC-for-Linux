@@ -9,12 +9,17 @@ import re
 import codecs
 import shutil
 import string
-import hashlib
 
 protocol = imp.load_source('protocol', '../protocol.py')
 nxDSCLog = imp.load_source('nxDSCLog', '../nxDSCLog.py')
 
 LG = nxDSCLog.DSCLog
+try:
+    import hashlib
+    md5const = hashlib.md5
+except ImportError:
+    import md5
+    md5const = md5.md5
 
 inventoryMof_path = '/etc/opt/microsoft/omsagent/conf/omsagent.d/'
 
@@ -62,6 +67,16 @@ def Get_Marshall(FileName, Enable = False, Instances = None, RunIntervalInSecond
         if instance['Properties'] is not None and len(instance['Properties']):
             instance['Properties'] = protocol.MI_StringA(instance['Properties'])
     Instances = protocol.MI_InstanceA(CurrentInstances)
+    RunIntervalInSeconds = protocol.MI_Uint64(RunIntervalInSeconds)
+    Tag = protocol.MI_String(Tag)
+    Format = protocol.MI_String(Format)
+    FilterType = protocol.MI_String(FilterType)
+
+    if Configuration is None:
+        Configuration = []
+    if Configuration is not None and len(Configuration):
+        Configuration = protocol.MI_StringA(Configuration)
+
     retd = {}
     ld = locals()
     for k in arg_names:
@@ -144,9 +159,9 @@ def GenerateInventoyMOF(FileName, Instances, RunIntervalInSeconds, Tag, Format, 
     return txt
 
 def GetFileChecksum(FilePath):
-    checksum = hashlib.md5(open(FilePath, 'rb').read()).hexdigest()
+    checksum = md5const(open(FilePath, 'rb').read()).hexdigest()
     return checksum
 
 def GetStringChecksum(inputString):
-    checksum = hashlib.md5(inputString.encode('utf-8')).hexdigest()
+    checksum = md5const(inputString.encode('utf-8')).hexdigest()
     return checksum

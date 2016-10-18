@@ -166,7 +166,7 @@ nxOMSAgent=imp.load_source('nxOMSAgent','./Scripts/nxOMSAgent.py')
 nxOMSCustomLog=imp.load_source('nxOMSCustomLog','./Scripts/nxOMSCustomLog.py')
 nxOMSKeyMgmt=imp.load_source('nxOMSKeyMgmt','./Scripts/nxOMSKeyMgmt.py')
 nxFileInventory=imp.load_source('nxFileInventory', './Scripts/nxFileInventory.py')
-
+nxOMSGenerateInventoryMof=imp.load_source('nxOMSGenerateInventoryMof', './Scripts/nxOMSGenerateInventoryMof.py')
 
 class nxUserTestCases(unittest2.TestCase):
     """
@@ -3573,6 +3573,84 @@ class nxOMSCustomLogTestCases(unittest2.TestCase):
         self.assertTrue(check_values(g, m)  ==  True, \
         'Get('+repr(g)+' should return ==['+repr(m)+']')
     
+class nxOMSGenerateInventoryMofTestCases(unittest2.TestCase):
+    """
+    Test Case for nxOMSGenerateInventoryMof.py
+    """
+
+    original_mof_path = None
+    mock_mof_path = '/tmp/'
+
+    def setUp(self):
+        """
+        Setup test resources
+        """
+        self.original_mof_path = nxOMSGenerateInventoryMof.inventoryMof_path
+        nxOMSGenerateInventoryMof.inventoryMof_path = self.mock_mof_path
+        os.system('rm -rf %s' % self.mock_mof_path + 'generatedinventory.mof')
+        os.system('rm -rf %s' % self.mock_mof_path + 'generatedinventory.conf')
+
+    def tearDown(self):
+        """
+        Remove test resources
+        """
+        nxOMSGenerateInventoryMof.inventoryMof_path = self.original_mof_path
+
+    def make_MI(self, retval, FileName, Enable, Instances , RunIntervalInSeconds, Tag , Format , FilterType , Configuration):
+        d = dict()
+        d['FileName'] = nxOMSGenerateInventoryMof.protocol.MI_String(FileName)
+        d['Enable'] = nxOMSGenerateInventoryMof.protocol.MI_Boolean(Enable)
+        if Instances is None:
+            Instances = []
+        for instance in Instances:
+            instance['InstanceName'] = nxOMSGenerateInventoryMof.protocol.MI_String(instance['InstanceName'])
+            instance['ClassName'] = nxOMSGenerateInventoryMof.protocol.MI_String(instance['ClassName'])
+
+            if instance['Properties'] is not None and len(instance['Properties']):
+                instance['Properties'] = nxOMSGenerateInventoryMof.protocol.MI_StringA(instance['Properties'])
+        d['Instances'] = nxOMSGenerateInventoryMof.protocol.MI_InstanceA(Instances)
+        d['RunIntervalInSeconds'] =  nxOMSGenerateInventoryMof.protocol.MI_Uint64(RunIntervalInSeconds)
+        d['Tag'] = nxOMSGenerateInventoryMof.protocol.MI_String(Tag)
+        d['Format'] = nxOMSGenerateInventoryMof.protocol.MI_String(Format)
+        d['FilterType'] = nxOMSGenerateInventoryMof.protocol.MI_String(FilterType)
+
+        if Configuration is None:
+            Configuration = []
+        if Configuration is not None and len(Configuration):
+            d['Configuration'] = nxOMSGenerateInventoryMof.protocol.MI_StringA(Configuration)
+
+        return retval, d
+
+    def testSetOMSGenerateInventoryMof_multipleinstances(self):
+        d = { 'FileName': 'generatedinventory.mof', 'Enable': True, 'Instances': [{ 'InstanceName': 'FileInventory', 'ClassName': 'MSFT_nxFileInventoryResource', 'Properties': [ 'DestinationPath = "/etc/*.conf";', 'Recurse=true;' ] }, { 'InstanceName': 'RegistryInventory', 'ClassName':'MSFT_nxRegistryInventoryResource', 'Properties': [ 'RegistryName=hkeylocal;' ] } ], 'RunIntervalInSeconds':300, 'Tag': 'Test', 'Format':'tsv', 'FilterType':'filter', 'Configuration':['testname = value'] }
+
+        for instance in d['Instances']:
+            instance['InstanceName'] = nxOMSGenerateInventoryMof.protocol.MI_String(instance['InstanceName'])
+            instance['ClassName'] = nxOMSGenerateInventoryMof.protocol.MI_String(instance['ClassName'])
+            instance['Properties'] = nxOMSGenerateInventoryMof.protocol.MI_StringA(instance['Properties'])
+
+        self.assertTrue(nxOMSGenerateInventoryMof.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
+
+    def testSetOMSGenerateInventoryMof_noinstances(self):
+        d = { 'FileName': 'generatedinventory.mof', 'Enable': True, 'Instances': None }
+        self.assertTrue(nxOMSGenerateInventoryMof.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
+
+    def testSetOMSGenerateInventoryMof_EnableisFalse(self):
+        d = { 'FileName': 'generatedinventory.mof', 'Enable': False, 'Instances': [{ 'InstanceName': 'FileInventory', 'ClassName': 'MSFT_nxFileInventoryResource', 'Properties': [ 'DestinationPath = "/etc/*.conf";', 'Recurse=true;' ] }, { 'InstanceName': 'RegistryInventory', 'ClassName':'MSFT_nxRegistryInventoryResource', 'Properties': [ 'RegistryName=hkeylocal;' ] } ], 'RunIntervalInSeconds':300, 'Tag': 'Test', 'Format':'tsv', 'FilterType':'filter', 'Configuration':['testname = value'] }
+        for instance in d['Instances']:
+            instance['InstanceName'] = nxOMSGenerateInventoryMof.protocol.MI_String(instance['InstanceName'])
+            instance['ClassName'] = nxOMSGenerateInventoryMof.protocol.MI_String(instance['ClassName'])
+            instance['Properties'] = nxOMSGenerateInventoryMof.protocol.MI_StringA(instance['Properties'])
+
+        self.assertTrue(nxOMSGenerateInventoryMof.Set_Marshall(**d) == [0],'Set('+repr(d)+') should return == [0]')
+
+    def testGetOMSGenerateInventoryMof_default(self):
+        d = { 'FileName': 'generatedinventory.mof', 'Enable': True, 'Instances': [{ 'InstanceName': 'FileInventory', 'ClassName': 'MSFT_nxFileInventoryResource', 'Properties': [ 'DestinationPath = "/etc/*.conf";', 'Recurse=true;' ] }, { 'InstanceName': 'RegistryInventory', 'ClassName':'MSFT_nxRegistryInventoryResource', 'Properties': [ 'RegistryName=hkeylocal;' ] } ], 'RunIntervalInSeconds':300, 'Tag': 'Test', 'Format':'tsv', 'FilterType':'filter', 'Configuration':['testname = value'] }
+        m=self.make_MI(0,**d)
+        g=nxOMSGenerateInventoryMof.Get_Marshall(**d)
+        print('GET '+ repr(g))
+        self.assertTrue(check_values(g, m)  ==  True, \
+        'Get('+repr(g)+' should return ==['+repr(m)+']')
 
 # omsagent is not required to  be running.
 class nxOMSKeyMgmtTestCases(unittest2.TestCase):
@@ -4420,6 +4498,7 @@ if __name__ == '__main__':
     s20=unittest2.TestLoader().loadTestsFromTestCase(nxOMSCustomLogTestCases)
     s21=unittest2.TestLoader().loadTestsFromTestCase(nxOMSKeyMgmtTestCases)
     s22=unittest2.TestLoader().loadTestsFromTestCase(nxFileInventoryTestCases)
-    alltests = unittest2.TestSuite([s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20])
-    unittest2.TextTestRunner(stream=sys.stdout,verbosity=3).run(alltests)
+    s23=unittest2.TestLoader().loadTestsFromTestCase(nxOMSGenerateInventoryMofTestCases)
+    alltests = unittest2.TestSuite([s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s23])
+    unittest2.TextTestRunner(stream=sys.stdout,verbosity=3).run(s23)
     
