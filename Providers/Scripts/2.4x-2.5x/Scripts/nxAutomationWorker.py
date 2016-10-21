@@ -7,27 +7,26 @@ import os
 import sys
 
 
-def init_locals(DestinationPath):
-    if DestinationPath is None:
-        DestinationPath = ''
-    return DestinationPath.encode('ascii', 'ignore')
+def init_locals(Name):
+    if Name is None:
+        Name = ''
+    return Name.encode('ascii', 'ignore')
 
 
-def Set_Marshall(DestinationPath):
-    DestinationPath = init_locals(DestinationPath)
+def Set_Marshall(Name):
+    Name = init_locals(Name)
     return [0]
 
 
-def Test_Marshall(DestinationPath):
-    DestinationPath = init_locals(DestinationPath)
+def Test_Marshall(Name):
+    Name = init_locals(Name)
     return [0]
 
 
-def Get_Marshall(DestinationPath):
+def Get_Marshall(Name):
     arg_names = list(locals().keys())
-    DestinationPath = init_locals(DestinationPath)
+    Name = init_locals(Name)
     retval = 0
-    arg_names.append('ModifiedDate')
     retd = {}
     ld = locals()
     for k in arg_names:
