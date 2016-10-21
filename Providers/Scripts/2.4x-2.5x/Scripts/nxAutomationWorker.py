@@ -7,32 +7,32 @@ import os
 import sys
 import datetime
 
-def init_locals(DestinationPath):
-    if DestinationPath is None:
-        DestinationPath = ''
-    return DestinationPath.encode('ascii', 'ignore')
+def init_locals(Name):
+    if Name is None:
+        Name = ''
+    return Name.encode('ascii', 'ignore')
 
 
-def Set_Marshall(DestinationPath):
-    DestinationPath = init_locals(DestinationPath)
-    fileHandle = open(DestinationPath, mode='a')
+def Set_Marshall(Name):
+    Name = init_locals(Name)
+    fileHandle = open(Name, mode='a')
     fileHandle.write("Hello world:  ")
     fileHandle.write(str(datetime.datetime.now()) + "\n")
     fileHandle.flush()
     fileHandle.close()
     return [0]
 
-def Test_Marshall(DestinationPath):
-    DestinationPath = init_locals(DestinationPath)
-    if os.path.isfile(DestinationPath):
+def Test_Marshall(Name):
+    Name = init_locals(Name)
+    if os.path.isfile(Name):
         return [0]
     else:
         return [-1]
 
 
-def Get_Marshall(DestinationPath):
+def Get_Marshall(Name):
     arg_names = list(locals().keys())
-    DestinationPath = init_locals(DestinationPath)
+    Name = init_locals(Name)
     retval = 0
     retd = {}
     ld = locals()
