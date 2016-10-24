@@ -64,9 +64,9 @@ def init_locals(DestinationPath, Recurse, Links, Checksum, Type, MaxContentsRetu
         Checksum = 'md5'
     if Type is None :
         Type = '*'
-    if MaxContentsReturnable is None :
+    if MaxContentsReturnable is None or MaxContentsReturnable < 0:
         MaxContentsReturnable = 1024
-    if MaxOutputSize is None :
+    if MaxOutputSize is None or MaxOutputSize < 0:
         MaxOutputSize = 10485760
     return DestinationPath, Recurse, Links.lower(), \
         Checksum.lower(), Type.lower(), \
@@ -110,14 +110,22 @@ def Inventory_Marshall(DestinationPath, Recurse, Links, Checksum, Type, MaxConte
     DestinationPath, Recurse, Links, Checksum, Type, MaxContentsReturnable, MaxOutputSize, UseSudo \
                      = init_locals(DestinationPath, Recurse, Links, Checksum, Type, MaxContentsReturnable, MaxOutputSize, UseSudo)
     retval = 0
-    out_size_cur = 0
+    out_size_cur = 158 # xml output header + footer length.
+    xml_overhead_array_element = 99 # xml output overhead per Inventory array entry.
+    xml_overhead_param = 102 # xml output overhead per Inventory parameter.
     _Inventory = []
     Inventory = DoInventory(DestinationPath, Recurse, Links, Checksum, Type, MaxContentsReturnable, MaxOutputSize, UseSudo)
     for d in Inventory:
         if out_size_cur <  MaxOutputSize:
-            out_size_cur += len(repr(d))
-        if out_size_cur >  MaxOutputSize:
-            continue
+            out_size_cur += xml_overhead_array_element
+            for k,v in d.items():
+                out_size_cur += xml_overhead_param
+                if 'Date' in k:
+                    out_size_cur += len(k) + 25 + 3 # The final date format wil be 25 chars, +3 for type tag. 
+                else:
+                    out_size_cur += len(k) + len(repr(v)) -2 # The repr(v) will add two quotes.
+        if out_size_cur >=  MaxOutputSize:
+            break
         d['DestinationPath'] = protocol.MI_String(d['DestinationPath'])
         d['Checksum'] = protocol.MI_String(d['Checksum'])
         d['Type'] = protocol.MI_String(d['Type'])
@@ -220,7 +228,10 @@ def GetFileInfo(fname, Links, MaxContentsReturnable, Checksum):
         d['Type'] = 'file'
     if d['Type'] == 'link' and Links == 'ignore':
         return {}
+    stat_info = None
     stat_info = LStatFile(fname)
+    if stat_info == None:
+        return {}
     d['DestinationPath'] = fname
     try:
         d['Owner'] = pwd.getpwuid(stat_info.st_uid).pw_name
@@ -255,6 +266,8 @@ def GetDirInfo(dname, stat_info, Checksum, Links):
     processed here as directories.
     """
     d = {}
+    if stat_info == None:
+        return d
     d['Type'] = 'directory'
     d['DestinationPath'] = dname
     try:
@@ -321,7 +334,7 @@ def ReadFileLimited(path, MaxContentsReturnable):
                 d = F.read(MaxContentsReturnable)
             except:
                 F.close()
-    return d, error
+    return d.encode().decode('ascii','ignore'), error
 
 
 def LStatFile(path):
