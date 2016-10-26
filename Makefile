@@ -59,7 +59,7 @@ endif
 
 
 ifeq ($(BUILD_OMS),BUILD_OMS)
-dsckit098: nx nxOMSAgent nxOMSPlugin nxOMSCustomLog nxFileInventory nxOMSGenerateInventoryMof nxAutomationWorker
+dsckit098: nx nxOMSAgent nxOMSPlugin nxOMSCustomLog nxFileInventory nxOMSGenerateInventoryMof nxOMSAutomationWorker
 else
 dsckit098: nx nxNetworking nxComputerManagement nxMySQL
 endif
@@ -69,7 +69,7 @@ endif
 	cp omi-1.0.8/output_openssl_0.9.8/release/*.{rpm,deb} output/release/*.{rpm,deb} release/
 
 ifeq ($(BUILD_OMS),BUILD_OMS)
-dsckit100: nx nxOMSAgent nxOMSPlugin nxOMSCustomLog nxFileInventory nxOMSGenerateInventoryMof nxAutomationWorker
+dsckit100: nx nxOMSAgent nxOMSPlugin nxOMSCustomLog nxFileInventory nxOMSGenerateInventoryMof nxOMSAutomationWorker
 else
 dsckit100: nx nxNetworking nxComputerManagement nxMySQL
 endif
@@ -200,10 +200,10 @@ nx:
 	mv $@_$${VERSION}.zip ../../release/
 endif
 
-nxAutomationWorker:
+nxOMSAutomationWorker:
 	rm -rf output/staging; \
 	VERSION="1.0"; \
-	PROVIDERS="nxAutomationWorker"; \
+	PROVIDERS="nxOMSAutomationWorker"; \
 	STAGINGDIR="output/staging/$@/DSCResources"; \
 	cat Providers/Modules/$@.psd1 | sed "s@<MODULE_VERSION>@$${VERSION}@" > intermediate/Modules/$@.psd1; \
 	for current in $$PROVIDERS; do \

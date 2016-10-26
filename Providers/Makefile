@@ -75,7 +75,7 @@ PROVIDERS+=nxOMSPlugin
 PROVIDERS+=nxAvailableUpdates
 PROVIDERS+=nxOMSKeyMgmt
 PROVIDERS+=nxFileInventory
-PROVIDERS+=nxAutomationWorker
+PROVIDERS+=nxOMSAutomationWorker
 else
 PROVIDERS:=nxFile
 PROVIDERS+=nxScript
@@ -96,7 +96,7 @@ PROVIDERS+=nxMySqlGrant
 PROVIDERS+=nxMySqlUser
 PROVIDERS+=nxAvailableUpdates
 PROVIDERS+=nxFileInventory
-PROVIDERS+=nxAutomationWorker
+PROVIDERS+=nxOMSAutomationWorker
 endif
 
 # this is used to enable the printing of xml style tags for help in debugging
