@@ -4,5 +4,5 @@
 class MSFT_nxOMSAutomationWorkerResource:OMI_BaseResource
 {        
     [Key] string Name;
-    boolean AutoRegister;
+    [Write] boolean AutoRegister;
 };

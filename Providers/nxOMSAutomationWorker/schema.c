@@ -841,14 +841,29 @@ static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_Name_prop =
     NULL,
 };
 
+static MI_CONST MI_Boolean MSFT_nxOMSAutomationWorkerResource_AutoRegister_Write_qual_value = 1;
+
+static MI_CONST MI_Qualifier MSFT_nxOMSAutomationWorkerResource_AutoRegister_Write_qual =
+{
+    MI_T("Write"),
+    MI_BOOLEAN,
+    MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
+    &MSFT_nxOMSAutomationWorkerResource_AutoRegister_Write_qual_value
+};
+
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSAutomationWorkerResource_AutoRegister_quals[] =
+{
+    &MSFT_nxOMSAutomationWorkerResource_AutoRegister_Write_qual,
+};
+
 /* property MSFT_nxOMSAutomationWorkerResource.AutoRegister */
 static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_AutoRegister_prop =
 {
-    MI_FLAG_PROPERTY|MI_FLAG_READONLY, /* flags */
+    MI_FLAG_PROPERTY, /* flags */
     0x0061720C, /* code */
     MI_T("AutoRegister"), /* name */
-    NULL, /* qualifiers */
-    0, /* numQualifiers */
+    MSFT_nxOMSAutomationWorkerResource_AutoRegister_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSAutomationWorkerResource_AutoRegister_quals), /* numQualifiers */
     MI_BOOLEAN, /* type */
     NULL, /* className */
     0, /* subscript */
