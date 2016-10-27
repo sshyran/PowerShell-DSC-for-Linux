@@ -30,6 +30,7 @@ typedef struct _MSFT_nxOMSAutomationWorkerResource /* extends OMI_BaseResource *
     /* OMI_BaseResource properties */
     /* MSFT_nxOMSAutomationWorkerResource properties */
     /*KEY*/ MI_ConstStringField Name;
+    MI_ConstBooleanField AutoRegister;
 }
 MSFT_nxOMSAutomationWorkerResource;
 
@@ -151,6 +152,22 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_Name(
     return self->__instance.ft->ClearElementAt(
         (MI_Instance*)&self->__instance,
         0);
+}
+
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_AutoRegister(
+    _Inout_ MSFT_nxOMSAutomationWorkerResource* self,
+    _In_ MI_Boolean x)
+{
+    ((MI_BooleanField*)&self->AutoRegister)->value = x;
+    ((MI_BooleanField*)&self->AutoRegister)->exists = 1;
+    return MI_RESULT_OK;
+}
+
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_AutoRegister(
+    _Inout_ MSFT_nxOMSAutomationWorkerResource* self)
+{
+    memset((void*)&self->AutoRegister, 0, sizeof(self->AutoRegister));
+    return MI_RESULT_OK;
 }
 
 /*

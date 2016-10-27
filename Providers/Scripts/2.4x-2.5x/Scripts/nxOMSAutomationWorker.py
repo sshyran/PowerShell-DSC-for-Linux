@@ -13,17 +13,17 @@ def init_locals(Name):
     return Name.encode('ascii', 'ignore')
 
 
-def Set_Marshall(Name):
+def Set_Marshall(Name, AutoRegister):
+    Name, AutoRegister = init_locals(Name)
+    return [0]
+
+
+def Test_Marshall(Name, AutoRegister):
     Name = init_locals(Name)
     return [0]
 
 
-def Test_Marshall(Name):
-    Name = init_locals(Name)
-    return [0]
-
-
-def Get_Marshall(Name):
+def Get_Marshall(Name, AutoRegister):
     arg_names = list(locals().keys())
     Name = init_locals(Name)
     retval = 0
