@@ -7,25 +7,27 @@ import os
 import sys
 
 
-def init_locals(Name):
+def init_locals(Name, WorkspaceId):
     if Name is None:
         Name = ''
-    return Name.encode('ascii', 'ignore')
+    if WorkspaceId is None:
+        WorkspaceId = ''
+    return Name.encode('ascii', 'ignore'), WorkspaceId.encode('ascii', 'ignore')
 
 
-def Set_Marshall(Name, AutoRegister):
-    Name, AutoRegister = init_locals(Name)
+def Set_Marshall(Name, AutoRegister, WorkspaceId):
+    (Name, WorkspaceId) = init_locals(Name, WorkspaceId)
     return [0]
 
 
-def Test_Marshall(Name, AutoRegister):
-    Name = init_locals(Name)
+def Test_Marshall(Name, AutoRegister, WorkspaceId):
+    (Name, WorkspaceId) = init_locals(Name)
     return [0]
 
 
-def Get_Marshall(Name, AutoRegister):
+def Get_Marshall(Name, AutoRegister, WorkspaceId):
     arg_names = list(locals().keys())
-    Name = init_locals(Name)
+    (Name, WorkspaceId) = init_locals(Name)
     retval = 0
     retd = {}
     ld = locals()

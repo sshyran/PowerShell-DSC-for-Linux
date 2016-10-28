@@ -873,10 +873,43 @@ static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_AutoRegister_
     NULL,
 };
 
+static MI_CONST MI_Boolean MSFT_nxOMSAutomationWorkerResource_WorkspaceId_Write_qual_value = 1;
+
+static MI_CONST MI_Qualifier MSFT_nxOMSAutomationWorkerResource_WorkspaceId_Write_qual =
+{
+    MI_T("Write"),
+    MI_BOOLEAN,
+    MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
+    &MSFT_nxOMSAutomationWorkerResource_WorkspaceId_Write_qual_value
+};
+
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSAutomationWorkerResource_WorkspaceId_quals[] =
+{
+    &MSFT_nxOMSAutomationWorkerResource_WorkspaceId_Write_qual,
+};
+
+/* property MSFT_nxOMSAutomationWorkerResource.WorkspaceId */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_WorkspaceId_prop =
+{
+    MI_FLAG_PROPERTY, /* flags */
+    0x0077640B, /* code */
+    MI_T("WorkspaceId"), /* name */
+    MSFT_nxOMSAutomationWorkerResource_WorkspaceId_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSAutomationWorkerResource_WorkspaceId_quals), /* numQualifiers */
+    MI_STRING, /* type */
+    NULL, /* className */
+    0, /* subscript */
+    offsetof(MSFT_nxOMSAutomationWorkerResource, WorkspaceId), /* offset */
+    MI_T("MSFT_nxOMSAutomationWorkerResource"), /* origin */
+    MI_T("MSFT_nxOMSAutomationWorkerResource"), /* propagator */
+    NULL,
+};
+
 static MI_PropertyDecl MI_CONST* MI_CONST MSFT_nxOMSAutomationWorkerResource_props[] =
 {
     &MSFT_nxOMSAutomationWorkerResource_Name_prop,
     &MSFT_nxOMSAutomationWorkerResource_AutoRegister_prop,
+    &MSFT_nxOMSAutomationWorkerResource_WorkspaceId_prop,
 };
 
 static MI_CONST MI_Boolean MSFT_nxOMSAutomationWorkerResource_GetTargetResource_Static_qual_value = 1;

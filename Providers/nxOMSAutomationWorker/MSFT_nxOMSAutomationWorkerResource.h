@@ -31,6 +31,7 @@ typedef struct _MSFT_nxOMSAutomationWorkerResource /* extends OMI_BaseResource *
     /* MSFT_nxOMSAutomationWorkerResource properties */
     /*KEY*/ MI_ConstStringField Name;
     MI_ConstBooleanField AutoRegister;
+    MI_ConstStringField WorkspaceId;
 }
 MSFT_nxOMSAutomationWorkerResource;
 
@@ -168,6 +169,38 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_AutoRegiste
 {
     memset((void*)&self->AutoRegister, 0, sizeof(self->AutoRegister));
     return MI_RESULT_OK;
+}
+
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_WorkspaceId(
+    _Inout_ MSFT_nxOMSAutomationWorkerResource* self,
+    _In_z_ const MI_Char* str)
+{
+    return self->__instance.ft->SetElementAt(
+        (MI_Instance*)&self->__instance,
+        2,
+        (MI_Value*)&str,
+        MI_STRING,
+        0);
+}
+
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_SetPtr_WorkspaceId(
+    _Inout_ MSFT_nxOMSAutomationWorkerResource* self,
+    _In_z_ const MI_Char* str)
+{
+    return self->__instance.ft->SetElementAt(
+        (MI_Instance*)&self->__instance,
+        2,
+        (MI_Value*)&str,
+        MI_STRING,
+        MI_FLAG_BORROW);
+}
+
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_WorkspaceId(
+    _Inout_ MSFT_nxOMSAutomationWorkerResource* self)
+{
+    return self->__instance.ft->ClearElementAt(
+        (MI_Instance*)&self->__instance,
+        2);
 }
 
 /*
