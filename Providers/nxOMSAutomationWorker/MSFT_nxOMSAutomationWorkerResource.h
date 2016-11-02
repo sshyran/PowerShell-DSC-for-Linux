@@ -30,7 +30,7 @@ typedef struct _MSFT_nxOMSAutomationWorkerResource /* extends OMI_BaseResource *
     /* OMI_BaseResource properties */
     /* MSFT_nxOMSAutomationWorkerResource properties */
     /*KEY*/ MI_ConstStringField Name;
-    MI_ConstBooleanField AutoRegister;
+    MI_ConstBooleanField Enabled;
     MI_ConstStringField WorkspaceId;
 }
 MSFT_nxOMSAutomationWorkerResource;
@@ -155,19 +155,19 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_Name(
         0);
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_AutoRegister(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_Enabled(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self,
     _In_ MI_Boolean x)
 {
-    ((MI_BooleanField*)&self->AutoRegister)->value = x;
-    ((MI_BooleanField*)&self->AutoRegister)->exists = 1;
+    ((MI_BooleanField*)&self->Enabled)->value = x;
+    ((MI_BooleanField*)&self->Enabled)->exists = 1;
     return MI_RESULT_OK;
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_AutoRegister(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_Enabled(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self)
 {
-    memset((void*)&self->AutoRegister, 0, sizeof(self->AutoRegister));
+    memset((void*)&self->Enabled, 0, sizeof(self->Enabled));
     return MI_RESULT_OK;
 }
 

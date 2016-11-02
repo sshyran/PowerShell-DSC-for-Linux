@@ -4,6 +4,6 @@
 class MSFT_nxOMSAutomationWorkerResource:OMI_BaseResource
 {        
     [Key] string Name;
-    [Write] boolean AutoRegister;
+    [Write] boolean Enabled;
     [Write] string WorkspaceId;
 };

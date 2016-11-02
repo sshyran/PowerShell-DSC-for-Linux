@@ -841,33 +841,33 @@ static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_Name_prop =
     NULL,
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSAutomationWorkerResource_AutoRegister_Write_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSAutomationWorkerResource_Enabled_Write_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSAutomationWorkerResource_AutoRegister_Write_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSAutomationWorkerResource_Enabled_Write_qual =
 {
     MI_T("Write"),
     MI_BOOLEAN,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSAutomationWorkerResource_AutoRegister_Write_qual_value
+    &MSFT_nxOMSAutomationWorkerResource_Enabled_Write_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSAutomationWorkerResource_AutoRegister_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSAutomationWorkerResource_Enabled_quals[] =
 {
-    &MSFT_nxOMSAutomationWorkerResource_AutoRegister_Write_qual,
+    &MSFT_nxOMSAutomationWorkerResource_Enabled_Write_qual,
 };
 
-/* property MSFT_nxOMSAutomationWorkerResource.AutoRegister */
-static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_AutoRegister_prop =
+/* property MSFT_nxOMSAutomationWorkerResource.Enabled */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_Enabled_prop =
 {
     MI_FLAG_PROPERTY, /* flags */
-    0x0061720C, /* code */
-    MI_T("AutoRegister"), /* name */
-    MSFT_nxOMSAutomationWorkerResource_AutoRegister_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSAutomationWorkerResource_AutoRegister_quals), /* numQualifiers */
+    0x00656407, /* code */
+    MI_T("Enabled"), /* name */
+    MSFT_nxOMSAutomationWorkerResource_Enabled_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSAutomationWorkerResource_Enabled_quals), /* numQualifiers */
     MI_BOOLEAN, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSAutomationWorkerResource, AutoRegister), /* offset */
+    offsetof(MSFT_nxOMSAutomationWorkerResource, Enabled), /* offset */
     MI_T("MSFT_nxOMSAutomationWorkerResource"), /* origin */
     MI_T("MSFT_nxOMSAutomationWorkerResource"), /* propagator */
     NULL,
@@ -908,7 +908,7 @@ static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_WorkspaceId_p
 static MI_PropertyDecl MI_CONST* MI_CONST MSFT_nxOMSAutomationWorkerResource_props[] =
 {
     &MSFT_nxOMSAutomationWorkerResource_Name_prop,
-    &MSFT_nxOMSAutomationWorkerResource_AutoRegister_prop,
+    &MSFT_nxOMSAutomationWorkerResource_Enabled_prop,
     &MSFT_nxOMSAutomationWorkerResource_WorkspaceId_prop,
 };
 

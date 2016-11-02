@@ -15,17 +15,17 @@ def init_locals(Name, WorkspaceId):
     return Name.encode('ascii', 'ignore'), WorkspaceId.encode('ascii', 'ignore')
 
 
-def Set_Marshall(Name, AutoRegister, WorkspaceId):
+def Set_Marshall(Name, Enabled, WorkspaceId):
     (Name, WorkspaceId) = init_locals(Name, WorkspaceId)
     return [0]
 
 
-def Test_Marshall(Name, AutoRegister, WorkspaceId):
+def Test_Marshall(Name, Enabled, WorkspaceId):
     (Name, WorkspaceId) = init_locals(Name)
     return [0]
 
 
-def Get_Marshall(Name, AutoRegister, WorkspaceId):
+def Get_Marshall(Name, Enabled, WorkspaceId):
     arg_names = list(locals().keys())
     (Name, WorkspaceId) = init_locals(Name)
     retval = 0
