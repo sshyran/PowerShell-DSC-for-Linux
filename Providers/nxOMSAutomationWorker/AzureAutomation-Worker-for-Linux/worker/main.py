@@ -71,9 +71,12 @@ class Worker:
         http_client_factory = HttpClientFactory(configuration.get_jrds_cert_path(), configuration.get_jrds_key_path())
         http_client = http_client_factory.create_http_client(sys.version_info, configuration.get_verify_certificates())
         self.jrds_client = JRDSClient(http_client)
+        self.running_sandboxes = {}
 
     @safe_loop
     def routine(self):
+        self.stop_tracking_terminated_sandbox()
+
         sandbox_actions = self.jrds_client.get_sandbox_actions()
         tracer.log_debug_trace("Get sandbox action. Found " + str(len(sandbox_actions)) + " action(s).")
 
@@ -81,10 +84,14 @@ class Worker:
             tracer.log_worker_sandbox_action_found(len(sandbox_actions))
             sandbox_id = str(action["SandboxId"])
 
+            # prevent duplicate sandbox from running
+            if sandbox_id in self.running_sandboxes:
+                return
+
             # create sandboxes folder if needed
             sandboxes_base_path = "sandboxes"
             sandbox_working_dir = os.path.join(configuration.get_working_dir(), sandboxes_base_path, sandbox_id)
-            # tracer.log_debug_trace("Sandbox folder " + str(sandbox_working_dir))
+
             if not os.path.exists(sandbox_working_dir):
                 tracer.log_debug_trace("Sandbox folder not existing.")
                 try:
@@ -100,6 +107,7 @@ class Worker:
                                                                   stdout=subprocess.PIPE,
                                                                   stderr=subprocess.PIPE,
                                                                   cwd=sandbox_working_dir)
+            self.running_sandboxes[sandbox_id] = sandbox_process
             self.monitor_sandbox_process_outputs(sandbox_id, sandbox_process)
             tracer.log_worker_starting_sandbox(sandbox_id, str(sandbox_process.pid))
 
@@ -122,6 +130,20 @@ class Worker:
             tracer.log_debug_trace("Sandbox crashed : " + str(full_error_output))
 
         tracer.log_worker_sandbox_process_exited(sandbox_id, str(process.pid), process.poll())
+
+    def stop_tracking_terminated_sandbox(self):
+        terminated_sandbox_ids = []
+
+        # detect terminated sandboxes
+        for sandbox_id, sandbox_process in self.running_sandboxes.items():
+            if sandbox_process.poll() is not None:
+                terminated_sandbox_ids.append(sandbox_id)
+
+        # clean-up terminated sandboxes
+        for sandbox_id in terminated_sandbox_ids:
+            removal = self.running_sandboxes.pop(sandbox_id, None)
+            if removal is not None:
+                tracer.log_debug_trace("Worker stopped tracking sandbox : " + str(sandbox_id))
 
 
 def main():

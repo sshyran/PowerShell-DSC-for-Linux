@@ -18,6 +18,7 @@ class HttpClient:
 
     GET = "GET"
     POST = "POST"
+    PUT = "PUT"
     DELETE = "DELETE"
 
     def __init__(self, cert_path, key_path, insecure=False):

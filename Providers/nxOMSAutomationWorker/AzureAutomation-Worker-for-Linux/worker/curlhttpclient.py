@@ -157,10 +157,8 @@ class CurlHttpClient(HttpClient):
 
         if method is not None:
             cmd.append(OPTION_REQUEST)
-            if method is self.GET:
-                cmd.append(self.GET)
-            elif method is self.POST:
-                cmd.append(self.POST)
+            cmd.append(method)
+            if data is not None:
                 cmd.append(OPTION_DATA)
                 cmd.append(data)
 
@@ -210,6 +208,56 @@ class CurlHttpClient(HttpClient):
             serial_data = self.json.dumps(data)
 
         cmd = self.build_request_cmd(url, headers, data=serial_data, method=self.POST)
+        p = subprocessfactory.create_subprocess(cmd, stdout=subprocess.PIPE)
+        out, err = p.communicate()
+
+        if p.returncode != EXIT_SUCCESS:
+            raise Exception("Http request failed due to curl error. [ReturnCode=" + str(p.returncode) + "]")
+
+        return self.parse_raw_output(out)
+
+    def put(self, url, headers=None, data=None):
+        """Issues a PUT request to the provided url using the provided headers.
+
+        Args:
+            url     : string    , the URl.
+            headers : dictionary, contains the headers key value pair (defaults to None).
+            data    : dictionary, contains the non-serialized request body (defaults to None).
+
+        Returns:
+            A RequestResponse
+        """
+        if data is None:
+            serial_data = ""
+        else:
+            serial_data = self.json.dumps(data)
+
+        cmd = self.build_request_cmd(url, headers, data=serial_data, method=self.PUT)
+        p = subprocessfactory.create_subprocess(cmd, stdout=subprocess.PIPE)
+        out, err = p.communicate()
+
+        if p.returncode != EXIT_SUCCESS:
+            raise Exception("Http request failed due to curl error. [ReturnCode=" + str(p.returncode) + "]")
+
+        return self.parse_raw_output(out)
+
+    def delete(self, url, headers=None, data=None):
+        """Issues a DELETE request to the provided url using the provided headers.
+
+        Args:
+            url     : string    , the URl.
+            headers : dictionary, contains the headers key value pair (defaults to None).
+            data    : dictionary, contains the non-serialized request body (defaults to None).
+
+        Returns:
+            A RequestResponse
+        """
+        if data is None:
+            serial_data = ""
+        else:
+            serial_data = self.json.dumps(data)
+
+        cmd = self.build_request_cmd(url, headers, data=serial_data, method=self.DELETE)
         p = subprocessfactory.create_subprocess(cmd, stdout=subprocess.PIPE)
         out, err = p.communicate()
 

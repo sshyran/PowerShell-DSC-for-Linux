@@ -15,7 +15,6 @@ class JRDSClient:
         self.httpClient = http_client
         self.protocol_version = "1.0"
         self.base_uri = configuration.get_jrds_base_uri()
-        self.subscription_id = configuration.get_subscription_id()
         self.account_id = configuration.get_account_id()
         self.HybridWorkerGroupName = configuration.get_hybrid_worker_name()
         self.machine_id = configuration.get_machine_id()
@@ -60,9 +59,13 @@ class JRDSClient:
             The output list is of the following format:
             [
                 {
-                    "JobId": "cc6b1940-85c0-43d9-8702-5c05dae9c39b",
-                    "LockToken": "78212fbd-fde0-49cf-beaa-7f12d37080bc",
-                    "MessageSource": "Queue"
+                    "MessageMetadata": {
+                        "PopReceipt": "AgAAAAMAAAAAAAAAPuDINxcZ0gE=",
+                        "MessageId": "2e682df3-a6c6-4d23-afc2-40dc01c2a509"
+                    },
+                    "MessageSource'": "Queue",
+                    "LockToken'": "00000000-0000-0000-0000-000000000000",
+                    "JobId'": "6cbb98cc-d69a-46f0-a116-3b6094ceba6b"
                 }
             ]
         """
@@ -360,7 +363,7 @@ class JRDSClient:
             return
         raise Exception("Unable to set log. [status=" + str(request.status_code) + "]")
 
-    def unload_job(self, sandbox_id, job_id, is_test, start_time, execution_time):
+    def unload_job(self, subscription_id, sandbox_id, job_id, is_test, start_time, execution_time):
         """Unloads the job for the given job id.
 
         Args:
@@ -374,7 +377,7 @@ class JRDSClient:
                    'isTest': is_test,
                    'jobId': job_id,
                    'startTime': start_time.isoformat(),
-                   'subscriptionId': self.subscription_id}
+                   'subscriptionId': subscription_id}
         headers = {"Content-Type": "application/json"}
         url = self.base_uri + "/automationAccounts/" + self.account_id + "/Sandboxes/" + sandbox_id + "/jobs/" + \
               job_id + "/unload?api-version=" + self.protocol_version

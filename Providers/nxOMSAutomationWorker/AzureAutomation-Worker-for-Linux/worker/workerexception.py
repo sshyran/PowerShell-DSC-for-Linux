@@ -13,6 +13,14 @@ class JrdsSandboxTerminated(Exception):
             self.message = msg
 
 
+class SandboxRuntimeException(Exception):
+    def __init__(self, msg=None):
+        if msg is None:
+            self.message = "Sandbox unhandled runtime exception."
+        else:
+            self.message = msg
+
+
 class WorkerUnsupportedRunbookType(Exception):
     def __init__(self, msg=None):
         if msg is None:

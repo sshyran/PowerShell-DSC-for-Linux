@@ -5,11 +5,14 @@
 """Runtime module. Contains runtime base class and language specific runtime classes."""
 
 import os
+import signal
 import subprocess
+import time
 from distutils.spawn import find_executable
 
 import configuration
 import subprocessfactory
+from workerexception import *
 
 
 class Runtime:
@@ -42,6 +45,40 @@ class Runtime:
                                                                       env=env,
                                                                       stdout=subprocess.PIPE,
                                                                       stderr=subprocess.PIPE)
+
+    def kill_runbook_subprocess(self):
+        """Attempts to kill the runbook subprocess.
+
+        This method will attempt to kill the runbook subprocess [max_attempt_count] and will return if successful.
+
+        Throws:
+            SandboxRuntimeException : If runbook subprocess is still alive after [max_attempt_count].
+        """
+        attempt_count = 0
+        max_attempt_count = 3
+        while attempt_count < max_attempt_count:
+            if self.runbook_subprocess is not None and self.runbook_subprocess.poll() is None:
+                os.kill(self.runbook_subprocess.pid, signal.SIGTERM)
+                runbook_proc_is_alive = self.is_process_alive(self.runbook_subprocess)
+                if runbook_proc_is_alive is False:
+                    return
+                attempt_count += 1
+                time.sleep(attempt_count)
+            else:
+                return
+        raise SandboxRuntimeException()
+
+    @staticmethod
+    def is_process_alive(process):
+        """Checks if the given process is still alive.
+
+        Returns:
+            boolean : True if the process [pid] is alive, False otherwise.
+        """
+        if process.poll() is None:
+            return True
+        else:
+            return False
 
     def write_runbook_to_disk(self):
         """Writes the runbook to disk.

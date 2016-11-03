@@ -15,7 +15,6 @@ COMPONENT = "component"
 CERT_PATH = "jrds_cert_path"
 KEY_PATH = "jrds_key_path"
 BASE_URI = "jrds_base_uri"
-SUBSCRIPTION_ID = "subscription_id"
 ACCOUNT_ID = "account_id"
 MACHINE_ID = "machine_id"
 HYBRID_WORKER_GROUP_NAME = "hybrid_worker_group_name"
@@ -53,7 +52,6 @@ def read_and_set_configuration(config_path):
     configuration = {CERT_PATH: os.path.abspath(config.get(CONFIG_SECTION, CERT_PATH)),
                      KEY_PATH: os.path.abspath(config.get(CONFIG_SECTION, KEY_PATH)),
                      BASE_URI: config.get(CONFIG_SECTION, BASE_URI),
-                     SUBSCRIPTION_ID: config.get(CONFIG_SECTION, SUBSCRIPTION_ID),
                      ACCOUNT_ID: config.get(CONFIG_SECTION, ACCOUNT_ID),
                      MACHINE_ID: config.get(CONFIG_SECTION, MACHINE_ID),
                      HYBRID_WORKER_GROUP_NAME: config.get(CONFIG_SECTION, HYBRID_WORKER_GROUP_NAME),
@@ -131,10 +129,6 @@ def get_jrds_key_path():
 
 def get_jrds_base_uri():
     return get_value(BASE_URI)
-
-
-def get_subscription_id():
-    return get_value(SUBSCRIPTION_ID)
 
 
 def get_account_id():

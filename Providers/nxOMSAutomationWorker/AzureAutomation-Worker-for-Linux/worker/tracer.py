@@ -67,7 +67,7 @@ def init():
     jrds_cert_path = configuration.get_jrds_cert_path()
     jrds_key_path = configuration.get_jrds_key_path()
     jrds_base_uri = configuration.get_jrds_base_uri()
-    subscription_id = configuration.get_subscription_id()
+    subscription_id = "00000000-0000-0000-0000-000000000000" # temporary place holder
     account_id = configuration.get_account_id()
     machine_id = configuration.get_machine_id()
     hybrid_worker_group_name = configuration.get_hybrid_worker_name()
