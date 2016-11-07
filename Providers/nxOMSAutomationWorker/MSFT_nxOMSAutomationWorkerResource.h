@@ -19,7 +19,7 @@
 ** MSFT_nxOMSAutomationWorkerResource [MSFT_nxOMSAutomationWorkerResource]
 **
 ** Keys:
-**    Name
+**    WorkspaceId
 **
 **==============================================================================
 */
@@ -29,9 +29,9 @@ typedef struct _MSFT_nxOMSAutomationWorkerResource /* extends OMI_BaseResource *
     MI_Instance __instance;
     /* OMI_BaseResource properties */
     /* MSFT_nxOMSAutomationWorkerResource properties */
-    /*KEY*/ MI_ConstStringField Name;
+    /*KEY*/ MI_ConstStringField WorkspaceId;
     MI_ConstBooleanField Enabled;
-    MI_ConstStringField WorkspaceId;
+    MI_ConstStringField RegDomain;
 }
 MSFT_nxOMSAutomationWorkerResource;
 
@@ -123,7 +123,7 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Post(
     return MI_Context_PostInstance(context, &self->__instance);
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_Name(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_WorkspaceId(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self,
     _In_z_ const MI_Char* str)
 {
@@ -135,7 +135,7 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_Name(
         0);
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_SetPtr_Name(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_SetPtr_WorkspaceId(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self,
     _In_z_ const MI_Char* str)
 {
@@ -147,7 +147,7 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_SetPtr_Name(
         MI_FLAG_BORROW);
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_Name(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_WorkspaceId(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self)
 {
     return self->__instance.ft->ClearElementAt(
@@ -171,7 +171,7 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_Enabled(
     return MI_RESULT_OK;
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_WorkspaceId(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_RegDomain(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self,
     _In_z_ const MI_Char* str)
 {
@@ -183,7 +183,7 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_WorkspaceId(
         0);
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_SetPtr_WorkspaceId(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_SetPtr_RegDomain(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self,
     _In_z_ const MI_Char* str)
 {
@@ -195,7 +195,7 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_SetPtr_WorkspaceI
         MI_FLAG_BORROW);
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_WorkspaceId(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_RegDomain(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self)
 {
     return self->__instance.ft->ClearElementAt(

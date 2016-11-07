@@ -3,7 +3,7 @@
 [ClassVersion("1.0.0"),FriendlyName("nxOMSAutomationWorker")]
 class MSFT_nxOMSAutomationWorkerResource:OMI_BaseResource
 {        
-    [Key] string Name;
+    [Key] string WorkspaceId;
     [Write] boolean Enabled;
-    [Write] string WorkspaceId;
+    [Write] string RegDomain;
 };

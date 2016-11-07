@@ -7,27 +7,46 @@ import os
 import sys
 
 
-def init_locals(Name, WorkspaceId):
-    if Name is None:
-        Name = ''
+def init_locals(WorkspaceId, RegDomain):
     if WorkspaceId is None:
         WorkspaceId = ''
-    return Name.encode, WorkspaceId.encode
+    if RegDomain is None:
+        RegDomain = ''
+    return WorkspaceId, RegDomain
 
 
-def Set_Marshall(Name, Enabled, WorkspaceId):
-    (Name, WorkspaceId) = init_locals(Name, WorkspaceId)
+def Set_Marshall(WorkspaceId, Enabled, RegDomain):
+    (WorkspaceId, RegDomain) = init_locals(WorkspaceId, RegDomain)
+    if (Enabled):
+        i = 1
+    else:
+        #TODO: read the state file and try to see if the process is running, kill it if its runnning
+        try:
+            os.remove(worker_state_path)
+        except Exception:
+            pass
+
     return [0]
 
 
-def Test_Marshall(Name, Enabled, WorkspaceId):
-    (Name, WorkspaceId) = init_locals(Name)
-    return [0]
+def Test_Marshall(WorkspaceId, Enabled, RegDomain):
+    (WorkspaceId, RegDomain) = init_locals(WorkspaceId, RegDomain)
+    if (Enabled):
+        if (os.path.isfile(worker_conf_path)):
+            if (os.path.isfile(worker_state_path)):
+                #TODO: read the file and see if the process is running
+                return [0]
+    else:
+        #Enabled is False
+        if (not os.path.isfile(worker_conf_path)):
+            if (not os.path.isfile(worker_state_path)):
+                return [0]
+    return [-1]
 
 
-def Get_Marshall(Name, Enabled, WorkspaceId):
+def Get_Marshall(WorkspaceId, Enabled, RegDomain):
     arg_names = list(locals().keys())
-    (Name, WorkspaceId) = init_locals(Name)
+    (WorkspaceId, RegDomain) = init_locals(WorkspaceId, RegDomain)
     retval = 0
     retd = {}
     ld = locals()
@@ -40,3 +59,5 @@ def Get_Marshall(Name, Enabled, WorkspaceId):
 # Begin user defined DSC functions
 # ###########################################################
 
+worker_conf_path="/var/opt/microsoft/omsagent/state/AzureAutomation-Worker-for-Linux/Worker.conf"
+worker_state_path="/var/opt/microsoft/omsagent/state/AzureAutomation-Worker-for-Linux/ WorkerState.conf"
