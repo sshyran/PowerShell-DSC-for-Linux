@@ -59,5 +59,5 @@ def Get_Marshall(WorkspaceId, Enabled, RegDomain):
 # Begin user defined DSC functions
 # ###########################################################
 
-worker_conf_path="/var/opt/microsoft/omsagent/state/AzureAutomation-Worker-for-Linux/Worker.conf"
-worker_state_path="/var/opt/microsoft/omsagent/state/AzureAutomation-Worker-for-Linux/ WorkerState.conf"
+worker_conf_path="/var/opt/microsoft/omsagent/state/automationworker/Worker.conf"
+worker_state_path="/var/opt/microsoft/omsagent/state/automationworker/ WorkerState.conf"
