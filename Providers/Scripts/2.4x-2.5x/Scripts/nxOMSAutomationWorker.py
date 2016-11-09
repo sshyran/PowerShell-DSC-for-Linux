@@ -9,6 +9,7 @@ import ConfigParser
 import subprocess
 import signal
 import imp
+import io
 
 nxDSCLog = imp.load_source('nxDSCLog', '../nxDSCLog.py')
 omsMetaConfigHelper = imp.load_source('OMS_MetaConfigHelper', '../OMS_MetaConfigHelper.py')
@@ -28,42 +29,45 @@ def Set_Marshall(WorkspaceId, Enabled, AzureDnsAgentSvcZone):
         #call the registration script
         try:
             agent_id = read_oms_config_file()
-            sp = subprocess.call(
+            proc = subprocess.Popen(
                 ["python", REGISTRATION_FILE_PATH, "--register", "-w " + WorkspaceId, "-a " + agent_id,
                  "-c " + OMS_CERTIFICATE_PATH, "-k " + OMS_CERT_KEY_PATH, "-p " + WORKING_DIRECTORY_PATH])
-            if sp != 0:
-                LG().Log('ERROR', "Linux Hybrid Worker registration failed")
+            proc.wait(timeout=200)
+            if proc.returncode != 0:
+                stdout, stderr = proc.communicate()
+                LG().Log('ERROR', "Linux Hybrid Worker registration failed " + stderr)
                 return [-1]
             if not os.path.isfile(WORKER_CONF_PATH):
                 LG().Log('ERROR', "Linux Hybrid Worker registration file could not be created")
                 return [-1]
         except Exception as exception:
             LG().Log('ERROR', exception.message)
-
+            return [-1]
         # Read the worker state file and try to kill linux hybrid worker process if running
         try:
-            (pid, workspace_id) = read_worker_state()
+            (pid, lhw_process_workspace_id) = read_worker_state()
         except Exception as exception:
             LG().Log('ERROR', exception.message)
         try:
             command = subprocess.check_output(["ps", "-p", str(pid), "-o", "comm="])
         except subprocess.CalledProcessError:
+            # if the process with pid isn't running, ignore
             pass
         except Exception as exception:
             LG().Log('ERROR', exception.message)
             return [-1]
         else:
             # Kill the worker if it matches the description
-            if command.__contains__(WorkspaceId):
+            if command.__contains__(lhw_process_workspace_id):
                 try:
                     os.kill(pid, signal.SIGTERM)
-                except Exception:
-                    LG().Log('ERROR', "Could not kill Linux Hybrid Worker process")
+                except Exception as exception:
+                    LG().Log('ERROR', "Could not kill Linux Hybrid Worker process " + exception.message)
                     return [-1]
         # Start the worker script
         try:
             sp = subprocess.call(
-                ["python", HYBRID_WORKER_START_PATH, "-c " + WORKER_CONF_PATH, "-w " + workspace_id])
+                ["python", HYBRID_WORKER_START_PATH, "-c " + WORKER_CONF_PATH, "-w " + WorkspaceId])
             if sp != 0:
                 LG().Log('ERROR', "Could not start Linux Hybrid Worker process")
                 return [-1]
@@ -73,7 +77,7 @@ def Set_Marshall(WorkspaceId, Enabled, AzureDnsAgentSvcZone):
     else:
         # enabled is set to false
         try:
-            (pid, workspace_id) = read_worker_state()
+            (pid, lhw_process_workspace_id) = read_worker_state()
             command = subprocess.check_output(["ps", "-p", str(pid), "-o", "comm="])
         except ConfigParser.Error:
             # if config parser error occurs file probably does't exist
@@ -89,7 +93,7 @@ def Set_Marshall(WorkspaceId, Enabled, AzureDnsAgentSvcZone):
         else:
             # the state file was properly read and the worker PID exists
             try:
-                if command.__contains__(workspace_id):
+                if command.__contains__(lhw_process_workspace_id):
                     os.kill(pid, signal.SIGTERM)
                 os.remove(WORKER_STATE_PATH)
             except Exception as exception:
