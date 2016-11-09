@@ -93,8 +93,7 @@ class Urllib2HttpClient(HttpClient):
         """
         https_handler = HttpsClientHandler(self.cert_path, self.key_path, self.insecure)
         opener = urllib2.build_opener(https_handler)
-        req_header = self.merge_headers(self.default_headers, headers)
-        req = urllib2.Request(url, data=data, headers=req_header)
+        req = urllib2.Request(url, data=data, headers=headers)
         response = opener.open(req, timeout=30)
         opener.close()
         https_handler.close()
@@ -111,6 +110,7 @@ class Urllib2HttpClient(HttpClient):
         Returns:
             An http_response
         """
+        headers = self.merge_headers(self.default_headers, headers)
 
         try:
             response = self.issue_request(url, headers=headers)
@@ -131,13 +131,13 @@ class Urllib2HttpClient(HttpClient):
         Returns:
             A RequestResponse
         """
-        if headers is not None:
-            headers.update(self.default_headers)
+        headers = self.merge_headers(self.default_headers, headers)
 
         if data is None:
             serial_data = ""
         else:
             serial_data = self.json.dumps(data)
+            headers.update({self.CONTENT_TYPE_HEADER_KEY: self.APP_JSON_HEADER_VALUE})
 
         try:
             response = self.issue_request(url, data=serial_data, headers=headers)

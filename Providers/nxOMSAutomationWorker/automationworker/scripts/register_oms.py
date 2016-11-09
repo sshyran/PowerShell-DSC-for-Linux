@@ -41,7 +41,7 @@ def get_cert_info(certificate_path):
 
     if p.poll() != 0:
         raise Exception("Unable to get certificate issuer.")
-    issuer = raw_issuer.split("issuer= ")[1]
+    issuer = raw_issuer.split("issuer= ")[1].strip()
 
     p = subprocess.Popen(["openssl", "x509", "-noout", "-in", certificate_path, "-subject"],
                          stdout=subprocess.PIPE,
@@ -50,7 +50,7 @@ def get_cert_info(certificate_path):
 
     if p.poll() != 0:
         raise Exception("Unable to get certificate subject.")
-    subject = raw_subject.split("subject= ")[1]
+    subject = raw_subject.split("subject= ")[1].strip()
 
     return issuer, subject, thumbprint
 
@@ -115,29 +115,32 @@ def deregister(registration_endpoint, worker_group_name, machine_id, cert_path, 
 
 
 def create_worker_configuration_file(working_directory, jrds_uri, registration_endpoint, workspace_id,
-                                     automation_account_id, worker_group_name, machine_id, oms_key_path, oms_cert_path):
+                                     automation_account_id, worker_group_name, machine_id, oms_cert_path, oms_key_path):
     """Creates the automation hybrid worker configuration file.
 
     Note:
         The generated file has to match the latest worker.conf template.
     """
+    issuer, subject, thumbprint = get_cert_info(oms_cert_path)
+
     conf = open(os.path.join(working_directory, "worker.conf"), "w")
     conf.write("[configuration]\n")
-    conf.write("jrds_cert_path = " + oms_cert_path + "\n")
-    conf.write("jrds_key_path = " + oms_key_path + "\n")
-    conf.write("jrds_base_uri = " + jrds_uri + "\n")
-    conf.write("account_id = " + automation_account_id + "\n")
-    conf.write("machine_id = " + machine_id + "\n")
-    conf.write("hybrid_worker_group_name = " + worker_group_name + "\n")
-    conf.write("working_dir = " + working_directory + "\n")
-    conf.write("bypass_certificate_verification = True\n")
-    conf.write("debug_traces = True\n")
+    conf.write("jrds_cert_path=" + oms_cert_path + "\n")
+    conf.write("jrds_key_path=" + oms_key_path + "\n")
+    conf.write("jrds_base_uri=" + jrds_uri + "\n")
+    conf.write("account_id=" + automation_account_id + "\n")
+    conf.write("machine_id=" + machine_id + "\n")
+    conf.write("hybrid_worker_group_name=" + worker_group_name + "\n")
+    conf.write("working_dir=" + working_directory + "\n")
+    conf.write("bypass_certificate_verification=False\n")
+    conf.write("debug_traces=True\n")
     conf.write("\n")
 
     conf.write("[OMSMetadata]\n")
     conf.write("agent_id = " + machine_id + "\n")
     conf.write("workspace_id = " + workspace_id + "\n")
     conf.write("registration_endpoint = " + registration_endpoint + "\n")
+    conf.write("oms_cert_thumbprint = " + thumbprint + "\n")
 
 
 def main(argv):
@@ -205,7 +208,7 @@ def main(argv):
                                              oms_key_path, test_mode)
             create_worker_configuration_file(working_directory, registration_response["jobRuntimeDataServiceUri"],
                                              registration_endpoint, workspace_id, registration_response["AccountId"],
-                                             worker_group_name, machine_id, oms_key_path, oms_cert_path)
+                                             worker_group_name, machine_id, oms_cert_path, oms_key_path)
         elif operation == DEREGISTER:
             deregister(registration_endpoint, worker_group_name, machine_id, oms_cert_path, oms_key_path, test_mode)
         else:

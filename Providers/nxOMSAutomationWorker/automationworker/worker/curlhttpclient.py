@@ -21,7 +21,6 @@ OPTION_HEADER = "--header"
 OPTION_REQUEST = "--request"
 OPTION_INSECURE = "--insecure"
 OPTION_DATA = "--data"
-OPTION_SSL_REQD = "--ssl-reqd"
 
 OPTION_CONNECT_TIMEOUT = "--connect-timeout"
 OPTION_MAX_TIME = "--max-time"
@@ -149,7 +148,6 @@ class CurlHttpClient(HttpClient):
         cmd.append(OPTION_WRITE_OUT)
         cmd.append(STATUS_CODE_DELIMITER + CURL_HTTP_CODE_SPECIAL_VAR + "\n")
 
-        headers = self.merge_headers(self.default_headers, headers)
         if headers is not None:
             for key, value in headers.iteritems():
                 cmd.append(OPTION_HEADER)
@@ -164,8 +162,6 @@ class CurlHttpClient(HttpClient):
 
         if self.insecure:
             cmd.append(OPTION_INSECURE)
-        else:
-            cmd.append(OPTION_SSL_REQD)
 
         # TODO(dalbe): Add proxy integration
 
@@ -182,6 +178,8 @@ class CurlHttpClient(HttpClient):
         Returns:
             A RequestResponse
         """
+        headers = self.merge_headers(self.default_headers, headers)
+
         cmd = self.build_request_cmd(url, headers, method=self.GET)
         p = subprocessfactory.create_subprocess(cmd, stdout=subprocess.PIPE)
         out, err = p.communicate()
@@ -202,10 +200,13 @@ class CurlHttpClient(HttpClient):
         Returns:
             A RequestResponse
         """
+        headers = self.merge_headers(self.default_headers, headers)
+
         if data is None:
             serial_data = ""
         else:
             serial_data = self.json.dumps(data)
+            headers.update({self.CONTENT_TYPE_HEADER_KEY: self.APP_JSON_HEADER_VALUE})
 
         cmd = self.build_request_cmd(url, headers, data=serial_data, method=self.POST)
         p = subprocessfactory.create_subprocess(cmd, stdout=subprocess.PIPE)
@@ -227,10 +228,13 @@ class CurlHttpClient(HttpClient):
         Returns:
             A RequestResponse
         """
+        headers = self.merge_headers(self.default_headers, headers)
+
         if data is None:
             serial_data = ""
         else:
             serial_data = self.json.dumps(data)
+            headers.update({self.CONTENT_TYPE_HEADER_KEY: self.APP_JSON_HEADER_VALUE})
 
         cmd = self.build_request_cmd(url, headers, data=serial_data, method=self.PUT)
         p = subprocessfactory.create_subprocess(cmd, stdout=subprocess.PIPE)
@@ -252,6 +256,8 @@ class CurlHttpClient(HttpClient):
         Returns:
             A RequestResponse
         """
+        headers = self.merge_headers(self.default_headers, headers)
+
         if data is None:
             serial_data = ""
         else:

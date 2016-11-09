@@ -13,8 +13,12 @@ import configuration
 class HttpClient:
     """Base class to provide common attributes and functionality to all HttpClient implementation."""
     ACCEPT_HEADER_KEY = "Accept"
+    CONTENT_TYPE_HEADER_KEY = "Content-Type"
     CONNECTION_HEADER_KEY = "Connection"
     USER_AGENT_HEADER_KEY = "User-Agent"
+
+    APP_JSON_HEADER_VALUE = "application/json"
+    KEEP_ALIVE_HEADER_VALUE = "keep-alive"
 
     GET = "GET"
     POST = "POST"
@@ -31,8 +35,8 @@ class HttpClient:
             print cert_path
             raise Exception("Invalid certificate or key file path.")
 
-        self.default_headers = {self.ACCEPT_HEADER_KEY: "application/json",
-                                self.CONNECTION_HEADER_KEY: "keep-alive",
+        self.default_headers = {self.ACCEPT_HEADER_KEY: self.APP_JSON_HEADER_VALUE,
+                                self.CONNECTION_HEADER_KEY: self.KEEP_ALIVE_HEADER_VALUE,
                                 self.USER_AGENT_HEADER_KEY: "AzureAutomationHybridWorker/" +
                                                             configuration.get_worker_version()}
         self.json = serializerfactory.get_serializer(sys.version_info)

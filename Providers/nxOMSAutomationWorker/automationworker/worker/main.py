@@ -149,8 +149,7 @@ class Worker:
 def main():
     if len(sys.argv) < 2:
         exit_on_error("Invalid configuration file path (absolute path is required).")
-    else:
-        configuration_path = sys.argv[1]
+    configuration_path = sys.argv[1]
 
     if not os.path.isfile(configuration_path):
         exit_on_error("Invalid configuration file path (absolute path is required).")
