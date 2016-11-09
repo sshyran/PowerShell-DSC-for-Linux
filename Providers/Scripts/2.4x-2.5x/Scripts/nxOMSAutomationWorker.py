@@ -9,10 +9,9 @@ import ConfigParser
 import subprocess
 import signal
 import imp
-import io
+import datetime
 
 nxDSCLog = imp.load_source('nxDSCLog', '../nxDSCLog.py')
-omsMetaConfigHelper = imp.load_source('OMS_MetaConfigHelper', '../OMS_MetaConfigHelper.py')
 LG = nxDSCLog.DSCLog
 
 def init_locals(WorkspaceId, AzureDnsAgentSvcZone):
@@ -213,7 +212,7 @@ def read_worker_registration_conf():
 def read_oms_config_file():
     if os.path.isfile(OMS_ADMIN_CONFIG_FILE):
         try:
-            keyvals = omsMetaConfigHelper.source_file(OMS_ADMIN_CONFIG_FILE)
+            keyvals = source_file(OMS_ADMIN_CONFIG_FILE)
             return keyvals[AGENT_ID].strip()
         except ConfigParser.NoSectionError as exception:
             LG().Log('DEBUG', exception.message)
@@ -225,3 +224,28 @@ def read_oms_config_file():
         error_string = "could not find file" + OMS_ADMIN_CONFIG_FILE
         LG().Log('DEUBG', error_string)
         raise ValueError(error_string);
+
+def source_file(filename):
+    retval = dict()
+    f = open(filename, "r")
+    contents = f.read()
+    f.close()
+    lines = contents.splitlines()
+    for line in lines:
+        # Find first '='; everything before is key, everything after is value
+        midpoint = line.find("=")
+        if (midpoint == 0 or midpoint == -1):
+            # Skip over lines without = or lines that begin with =
+            continue
+        key = line[:midpoint]
+        value = line[midpoint+1:]
+        retval[key] = value
+    return retval
+
+
+def log_local(level, message):
+    fileh = open("/var/opt/microsoft/omsagent/log/nxOMSAutomationWorker.log", "a")
+    line = level + " " + message + " " + str(datetime.datetime.now()) + "\n"
+    fileh.writelines(line)
+    fileh.flush()
+    fileh.close()
