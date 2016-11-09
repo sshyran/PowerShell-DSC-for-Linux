@@ -23,6 +23,8 @@ WORKING_DIR = "working_dir"
 DEBUG_TRACES = "debug_traces"
 BYPASS_CERTIFICATE_VERIFICATION = "bypass_certificate_verification"
 SOURCECODE_PATH = "sourcecode_path"
+ENFORCE_RUNBOOK_SIGNATURE_VALIDATION = "enforce_runbook_signature_validation"
+GPG_PUBLIC_KEYRING_PATH = "gpg_public_keyring_path"
 
 json = serializerfactory.get_serializer(sys.version_info)
 
@@ -46,9 +48,16 @@ def read_and_set_configuration(config_path):
     except Exception:
         pass
 
-    config = ConfigParser.ConfigParser()
+    # init and set default values for optional configuration keys
+    config = ConfigParser.SafeConfigParser({DEBUG_TRACES: "false",
+                                            BYPASS_CERTIFICATE_VERIFICATION: "false",
+                                            ENFORCE_RUNBOOK_SIGNATURE_VALIDATION: "true",
+                                            GPG_PUBLIC_KEYRING_PATH: ""})
+
+    # load the worker configuration file
     config.read(config_path)
 
+    # create the configuration dictionary
     configuration = {CERT_PATH: os.path.abspath(config.get(CONFIG_SECTION, CERT_PATH)),
                      KEY_PATH: os.path.abspath(config.get(CONFIG_SECTION, KEY_PATH)),
                      BASE_URI: config.get(CONFIG_SECTION, BASE_URI),
@@ -60,8 +69,13 @@ def read_and_set_configuration(config_path):
                      BYPASS_CERTIFICATE_VERIFICATION: config.getboolean(CONFIG_SECTION,
                                                                         BYPASS_CERTIFICATE_VERIFICATION),
                      SOURCECODE_PATH: os.path.dirname(os.path.realpath(__file__)),
+                     ENFORCE_RUNBOOK_SIGNATURE_VALIDATION: config.getboolean(CONFIG_SECTION,
+                                                                             ENFORCE_RUNBOOK_SIGNATURE_VALIDATION),
+                     GPG_PUBLIC_KEYRING_PATH: config.get(CONFIG_SECTION, GPG_PUBLIC_KEYRING_PATH),
                      WORKER_VERSION: "8.0.0.0",  # TODO(dalbe): take version from config
                      COMPONENT: "Unknown"}
+
+    # set the worker conf to env var
     set_config(configuration)
 
 
@@ -161,3 +175,11 @@ def get_verify_certificates():
 
 def get_sourcecode_path():
     return get_value(SOURCECODE_PATH)
+
+
+def get_enforce_runbook_signature_validation():
+    return get_value(ENFORCE_RUNBOOK_SIGNATURE_VALIDATION)
+
+
+def get_gpg_public_keyring_path():
+    return get_value(GPG_PUBLIC_KEYRING_PATH)
