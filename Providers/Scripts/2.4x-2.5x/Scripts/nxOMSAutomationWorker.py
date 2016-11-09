@@ -9,7 +9,7 @@ import ConfigParser
 import subprocess
 import signal
 import imp
-import io
+import datetime
 
 nxDSCLog = imp.load_source('nxDSCLog', '../nxDSCLog.py')
 LG = nxDSCLog.DSCLog
@@ -241,3 +241,11 @@ def source_file(filename):
         value = line[midpoint+1:]
         retval[key] = value
     return retval
+
+
+def log_local(level, message):
+    fileh = open("/var/opt/microsoft/omsagent/log/nxOMSAutomationWorker.log", "a")
+    line = level + " " + message + " " + str(datetime.datetime.now()) + "\n"
+    fileh.writelines(line)
+    fileh.flush()
+    fileh.close()
