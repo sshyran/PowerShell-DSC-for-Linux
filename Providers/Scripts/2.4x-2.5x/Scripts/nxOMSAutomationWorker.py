@@ -166,8 +166,8 @@ OMS_ADMIN_CONFIG_FILE="/etc/opt/microsoft/omsagent/conf/omsadmin.conf"
 OMS_CERTIFICATE_PATH="/etc/opt/microsoft/omsagent/certs/oms.crt"
 OMS_CERT_KEY_PATH= "/etc/opt/microsoft/omsagent/certs/oms.key"
 WORKING_DIRECTORY_PATH="/var/opt/microsoft/omsagent/tmp/"
-REGISTRATION_FILE_PATH=" /opt/microsoft/omsconfig/modules/nxAutomationWorker/automationworker/scripts/register_oms.py"
-HYBRID_WORKER_START_PATH="/opt/microsoft/omsconfig/modules/nxAutomationWorker/automationworker/scripts/worker/main.py"
+REGISTRATION_FILE_PATH="/opt/microsoft/omsconfig/modules/nxOMSAutomationWorker/DSCResources/MSFT_nxOMSAutomationWorkerResource/automationworker/scripts/register_oms.py"
+HYBRID_WORKER_START_PATH="/opt/microsoft/omsconfig/modules/nxOMSAutomationWorker/DSCResources/MSFT_nxOMSAutomationWorkerResource/automationworker/scripts/worker/main.py"
 
 def read_worker_state():
     if os.path.isfile(WORKER_STATE_PATH):
