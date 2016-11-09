@@ -873,33 +873,33 @@ static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_Enabled_prop 
     NULL,
 };
 
-static MI_CONST MI_Boolean MSFT_nxOMSAutomationWorkerResource_RegDomain_Write_qual_value = 1;
+static MI_CONST MI_Boolean MSFT_nxOMSAutomationWorkerResource_AzureDnsAgentSvcZone_Write_qual_value = 1;
 
-static MI_CONST MI_Qualifier MSFT_nxOMSAutomationWorkerResource_RegDomain_Write_qual =
+static MI_CONST MI_Qualifier MSFT_nxOMSAutomationWorkerResource_AzureDnsAgentSvcZone_Write_qual =
 {
     MI_T("Write"),
     MI_BOOLEAN,
     MI_FLAG_ENABLEOVERRIDE|MI_FLAG_TOSUBCLASS,
-    &MSFT_nxOMSAutomationWorkerResource_RegDomain_Write_qual_value
+    &MSFT_nxOMSAutomationWorkerResource_AzureDnsAgentSvcZone_Write_qual_value
 };
 
-static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSAutomationWorkerResource_RegDomain_quals[] =
+static MI_Qualifier MI_CONST* MI_CONST MSFT_nxOMSAutomationWorkerResource_AzureDnsAgentSvcZone_quals[] =
 {
-    &MSFT_nxOMSAutomationWorkerResource_RegDomain_Write_qual,
+    &MSFT_nxOMSAutomationWorkerResource_AzureDnsAgentSvcZone_Write_qual,
 };
 
-/* property MSFT_nxOMSAutomationWorkerResource.RegDomain */
-static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_RegDomain_prop =
+/* property MSFT_nxOMSAutomationWorkerResource.AzureDnsAgentSvcZone */
+static MI_CONST MI_PropertyDecl MSFT_nxOMSAutomationWorkerResource_AzureDnsAgentSvcZone_prop =
 {
     MI_FLAG_PROPERTY, /* flags */
-    0x00726E09, /* code */
-    MI_T("RegDomain"), /* name */
-    MSFT_nxOMSAutomationWorkerResource_RegDomain_quals, /* qualifiers */
-    MI_COUNT(MSFT_nxOMSAutomationWorkerResource_RegDomain_quals), /* numQualifiers */
+    0x00616514, /* code */
+    MI_T("AzureDnsAgentSvcZone"), /* name */
+    MSFT_nxOMSAutomationWorkerResource_AzureDnsAgentSvcZone_quals, /* qualifiers */
+    MI_COUNT(MSFT_nxOMSAutomationWorkerResource_AzureDnsAgentSvcZone_quals), /* numQualifiers */
     MI_STRING, /* type */
     NULL, /* className */
     0, /* subscript */
-    offsetof(MSFT_nxOMSAutomationWorkerResource, RegDomain), /* offset */
+    offsetof(MSFT_nxOMSAutomationWorkerResource, AzureDnsAgentSvcZone), /* offset */
     MI_T("MSFT_nxOMSAutomationWorkerResource"), /* origin */
     MI_T("MSFT_nxOMSAutomationWorkerResource"), /* propagator */
     NULL,
@@ -909,7 +909,7 @@ static MI_PropertyDecl MI_CONST* MI_CONST MSFT_nxOMSAutomationWorkerResource_pro
 {
     &MSFT_nxOMSAutomationWorkerResource_WorkspaceId_prop,
     &MSFT_nxOMSAutomationWorkerResource_Enabled_prop,
-    &MSFT_nxOMSAutomationWorkerResource_RegDomain_prop,
+    &MSFT_nxOMSAutomationWorkerResource_AzureDnsAgentSvcZone_prop,
 };
 
 static MI_CONST MI_Boolean MSFT_nxOMSAutomationWorkerResource_GetTargetResource_Static_qual_value = 1;

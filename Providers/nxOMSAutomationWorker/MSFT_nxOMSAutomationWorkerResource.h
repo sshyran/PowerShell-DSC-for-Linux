@@ -31,7 +31,7 @@ typedef struct _MSFT_nxOMSAutomationWorkerResource /* extends OMI_BaseResource *
     /* MSFT_nxOMSAutomationWorkerResource properties */
     /*KEY*/ MI_ConstStringField WorkspaceId;
     MI_ConstBooleanField Enabled;
-    MI_ConstStringField RegDomain;
+    MI_ConstStringField AzureDnsAgentSvcZone;
 }
 MSFT_nxOMSAutomationWorkerResource;
 
@@ -171,7 +171,7 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_Enabled(
     return MI_RESULT_OK;
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_RegDomain(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_AzureDnsAgentSvcZone(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self,
     _In_z_ const MI_Char* str)
 {
@@ -183,7 +183,7 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Set_RegDomain(
         0);
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_SetPtr_RegDomain(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_SetPtr_AzureDnsAgentSvcZone(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self,
     _In_z_ const MI_Char* str)
 {
@@ -195,7 +195,7 @@ MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_SetPtr_RegDomain(
         MI_FLAG_BORROW);
 }
 
-MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_RegDomain(
+MI_INLINE MI_Result MI_CALL MSFT_nxOMSAutomationWorkerResource_Clear_AzureDnsAgentSvcZone(
     _Inout_ MSFT_nxOMSAutomationWorkerResource* self)
 {
     return self->__instance.ft->ClearElementAt(

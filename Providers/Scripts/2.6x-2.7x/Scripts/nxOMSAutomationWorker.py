@@ -14,16 +14,16 @@ nxDSCLog = imp.load_source('nxDSCLog', '../nxDSCLog.py')
 omsMetaConfigHelper = imp.load_source('OMS_MetaConfigHelper', '../OMS_MetaConfigHelper.py')
 LG = nxDSCLog.DSCLog
 
-def init_locals(WorkspaceId, RegDomain):
+def init_locals(WorkspaceId, AzureDnsAgentSvcZone):
     if WorkspaceId is None:
         WorkspaceId = ''
-    if RegDomain is None:
-        RegDomain = ''
-    return WorkspaceId.encode('ascii', 'ignore'), RegDomain.encode('ascii', 'ignore')
+    if AzureDnsAgentSvcZone is None:
+        AzureDnsAgentSvcZone = ''
+    return WorkspaceId.encode('ascii', 'ignore'), AzureDnsAgentSvcZone.encode('ascii', 'ignore')
 
 
-def Set_Marshall(WorkspaceId, Enabled, RegDomain):
-    (WorkspaceId, RegDomain) = init_locals(WorkspaceId, RegDomain)
+def Set_Marshall(WorkspaceId, Enabled, AzureDnsAgentSvcZone):
+    (WorkspaceId, AzureDnsAgentSvcZone) = init_locals(WorkspaceId, AzureDnsAgentSvcZone)
     if (Enabled):
         #call the registration script
         try:
@@ -101,8 +101,8 @@ def Set_Marshall(WorkspaceId, Enabled, RegDomain):
     return [0]
 
 
-def Test_Marshall(WorkspaceId, Enabled, RegDomain):
-    (WorkspaceId, RegDomain) = init_locals(WorkspaceId, RegDomain)
+def Test_Marshall(WorkspaceId, Enabled, AzureDnsAgentSvcZone):
+    (WorkspaceId, AzureDnsAgentSvcZone) = init_locals(WorkspaceId, AzureDnsAgentSvcZone)
     if Enabled:
         if os.path.isfile(WORKER_CONF_PATH):
             # read the version number and compare
@@ -137,9 +137,9 @@ def Test_Marshall(WorkspaceId, Enabled, RegDomain):
     return [-1]
 
 
-def Get_Marshall(WorkspaceId, Enabled, RegDomain):
+def Get_Marshall(WorkspaceId, Enabled, AzureDnsAgentSvcZone):
     arg_names = list(locals().keys())
-    (WorkspaceId, RegDomain) = init_locals(WorkspaceId, RegDomain)
+    (WorkspaceId, AzureDnsAgentSvcZone) = init_locals(WorkspaceId, AzureDnsAgentSvcZone)
     retval = 0
     retd = {}
     ld = locals()

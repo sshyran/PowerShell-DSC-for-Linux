@@ -5,5 +5,5 @@ class MSFT_nxOMSAutomationWorkerResource:OMI_BaseResource
 {        
     [Key] string WorkspaceId;
     [Write] boolean Enabled;
-    [Write] string RegDomain;
+    [Write] string AzureDnsAgentSvcZone;
 };
