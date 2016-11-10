@@ -22,5 +22,4 @@ STRINGTABLE
     10, "Context information that the provider can use to optimize the set, This is optional."
     11, "Set resource states based on input configuration file."
     12, "Context information that the provider can use to optimize the set from TestTargetResource, This is optional."
-    13, "The configuration provider for files and directories."
 }

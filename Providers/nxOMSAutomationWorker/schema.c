@@ -1658,7 +1658,7 @@ static MI_CONST MI_ProviderFT MSFT_nxOMSAutomationWorkerResource_funcs =
   (MI_ProviderFT_Invoke)NULL,
 };
 
-static MI_CONST MI_Char* MSFT_nxOMSAutomationWorkerResource_Description_qual_value = MI_T("13");
+static MI_CONST MI_Char* MSFT_nxOMSAutomationWorkerResource_Description_qual_value = MI_T("1");
 
 static MI_CONST MI_Qualifier MSFT_nxOMSAutomationWorkerResource_Description_qual =
 {
